@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.shortcuts import render
 
 urlpatterns = [
-    url(r'^$', lambda request: render(request, 'shaq/shaq_home.html'),
+    url(r'^$', lambda request: render(request, 'shaq/shaq_home.html')),
     url(r'^admin/', admin.site.urls),
 ]
