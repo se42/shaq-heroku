@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.http import HttpResponse
+from django.shortcuts import render
 
 urlpatterns = [
-    url(r'^$', lambda request: HttpResponse('shaq is a <b>S</b>imple <b>H</b>eroku <b>A</b>pplicaton for <b>Q</b>uality Control')),
+    url(r'^$', lambda request: render(request, 'shaq/shaq_home.html'),
     url(r'^admin/', admin.site.urls),
 ]
