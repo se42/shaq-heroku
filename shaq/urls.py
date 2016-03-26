@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.http import HttpResponse
 
 urlpatterns = [
-    url(r'^$', lambda request: HttpResponse('<b>S</b>imple <b>H</b>eroku <b>A</b>pplicaton for <b>Q</b>uality Control')),
+    url(r'^$', lambda request: HttpResponse('shaq is a <b>S</b>imple <b>H</b>eroku <b>A</b>pplicaton for <b>Q</b>uality Control')),
     url(r'^admin/', admin.site.urls),
 ]
