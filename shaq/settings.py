@@ -38,6 +38,7 @@ CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_HSTS_SECONDS = 0
 
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [

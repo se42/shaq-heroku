@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-@login_required
+from .utils import active_and_login_required
+
+@active_and_login_required
 def home_uri(request):
 	return render(request, 'shaq/shaq_home.html')
 
