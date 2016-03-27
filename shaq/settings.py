@@ -17,12 +17,16 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+try:
+    from .local_settings import set_local_env_variables
+    set_local_env_variables()
+except ImportError:
+    pass
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key and DB credentials used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config(conn_max_age=500)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -83,13 +87,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'shaq.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {}
-DATABASES['default'] =  dj_database_url.config(conn_max_age=500)
 
 
 # Password validation
