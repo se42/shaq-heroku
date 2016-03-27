@@ -26,6 +26,11 @@
 
 	<body>
 
+		<div class="container my-message-box text-center">
+			<h1>Welcome to shaq!</h1>
+			<p class="lead">Please login to continue.</p>
+		</div>
+
 		<form action="{% url 'login' %}" method="post" class="form form-signin">
 			{% csrf_token %}
 			{% bootstrap_form form %}
@@ -36,6 +41,7 @@
 
 
 		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	</body>
 </html>
