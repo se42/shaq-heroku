@@ -22,7 +22,7 @@
 
 		<!-- Custom styles for this template -->
 		{% load staticfiles %}
-		<link href="{% static 'shaq/css/shaq_base.css' %}" rel="stylesheet">
+		<link href="{% static 'shaq/css/project_base.css' %}" rel="stylesheet">
 		<link rel="icon" href="{% static 'shaq/img/favicon.ico' %}">
 
 		{% block head %}
@@ -42,14 +42,14 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">shaq</a>
+					<a class="navbar-brand" href="{% url 'site_home' %}">shaq</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Index</a></li>
-						<li><a href="#about">Metrics</a></li>
+						<li><a href="#">Link1</a></li>
+						<li><a href="#">Link2</a></li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Info <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Drop <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Action</a></li>
 								<li><a href="#">Another action</a></li>
@@ -60,7 +60,16 @@
 								<li><a href="#">One more separated link</a></li>
 							</ul>
 						</li>
-						<li><a href="{% url 'logout' %}">Logout ({{ request.user.username }})</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.username }} <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="{% url 'password_change' %}">Change Password</a></li>
+								{% if request.user.is_staff %}
+								<li><a href="/admin/">Admin</a></li>
+								{% endif %}
+								<li><a href="{% url 'logout' %}">Logout</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>

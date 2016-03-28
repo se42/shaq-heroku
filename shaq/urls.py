@@ -22,10 +22,10 @@ from .utils import active_and_login_required
 
 @active_and_login_required
 def home_uri(request):
-	return render(request, 'shaq/shaq_home.html')
+	return render(request, 'shaq/project_home.html')
 
 urlpatterns = [
-	url(r'^$', home_uri),
+	url(r'^$', home_uri, name='site_home'),
 	url(r'^accounts/', include('django.contrib.auth.urls')),
 	url(r'^admin/', admin.site.urls),
 ]
