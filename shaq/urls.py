@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-# from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from .utils import active_and_login_required
