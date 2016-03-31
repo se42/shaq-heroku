@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'qcforms.apps.QcformsConfig',
     'bootstrap3',
 ]
 
@@ -110,6 +111,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+BOOTSTRAP3 = {
+    # The complete URL to the Bootstrap CSS file (None means no theme)
+    'theme_url': "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css",
+
+    # Include jQuery with Bootstrap JavaScript (affects django-bootstrap3 template tags)
+    'include_jquery': True,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

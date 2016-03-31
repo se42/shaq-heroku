@@ -1,0 +1,28 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block title %}Report Form{% endblock title %}
+
+{% block head %}
+	{% load bootstrap3 %}
+	{% bootstrap_messages %}
+	{% load staticfiles %}
+{% endblock head %}
+
+{% block main %}
+<div class="container">
+	<h1>Interior NC Report Form</h1>
+
+	<form enctype="multipart/form-data" action="{% url 'qcforms:int-nc-form' report_id %}" method="post" class="form">
+			{% csrf_token %}
+
+			{% bootstrap_form form %}
+			
+			{% buttons submit='Submit' reset='Reset' %}
+			{% endbuttons %}
+	</form>
+</div>
+{% endblock main %}
+
+{% block scripts %}
+<script src="{% static 'qcforms/report-form.js' %}"></script>
+{% endblock scripts %}

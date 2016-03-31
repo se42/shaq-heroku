@@ -1,0 +1,29 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block main %}
+<div class="container">
+	<p><a class="btn btn-success" href="{% url 'qcforms:int-nc-form' 'new' %}" role="button">New Report</a></p>
+
+	{% if report_list %}
+		<table class="table table-bordered table-hover table-responsive">
+		<tr class="info">
+			<th>REPORT NUMBER</th>
+			<th>ORDER NUMBER</th>
+			<th>VIN</th>
+			<th>REPORT DATE</th>
+		</tr>
+		{% for report in report_list %}
+			<tr>
+				<td><a href="{% url 'qcforms:int-nc-detail' report.id %}">{{ report.report_number }}</a></td>
+				<td>{{ report.order_number }}</td>
+				<td>{{ report.vin }}</td>
+				<td>{{ report.report_date }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<p>No reports are available.</p>
+	{% endif %}
+
+</div>
+{% endblock main %}

@@ -1,0 +1,38 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block main %}
+<div class="container">
+	<h1>REPORT DETAIL</h1>
+	<p><a class="btn btn-warning" href="{% url 'qcforms:int-nc-form' report.id %}" role="button">Edit Report</a></p>
+	{% if report %}
+		<table class="table table-bordered table-hover table-responsive">
+			<tr>
+				<td>REPORT NUMBER</td>
+				<td>{{ report.report_number }}</td>
+			</tr>
+			<tr>
+				<td>ORDER NUMBER</td>
+				<td>{{ report.order_number }}</td>
+			</tr>
+			<tr>
+				<td>VIN</td>
+				<td>{{ report.vin }}</td>
+			</tr>
+			<tr>
+				<td>REPORT DATE:</td>
+				<td>{{ report.report_date }}</td>
+			</tr>
+			<tr>
+				<td>ISSUE SUMMARY</td>
+				<td>{{ report.issue_summary }}</td>
+			</tr>
+			<tr>
+				<td>ISSUE IMAGE(S)</td>
+				<td><a href="{{ MEDIA_URL }}{{ report.issue_image }}"><img src="{{ MEDIA_URL }}{{ report.issue_image }}" class="img-responsive"></a></td>
+			</tr>
+		</table>
+	{% else %}
+		<p>No report.</p>
+	{% endif %}
+</div>
+{% endblock main %}
