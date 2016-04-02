@@ -1,5 +1,9 @@
 {% extends 'shaq/project_base.html' %}
 
+{% block title %}
+Interior NC Index
+{% endblock title %}
+
 {% block main %}
 <div class="container">
 	<p><a class="btn btn-success" href="{% url 'qcforms:int-nc-form' 'new' %}" role="button">New Report</a></p>

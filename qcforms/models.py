@@ -3,9 +3,11 @@ from django.db import models
 
 class ReportBasic(models.Model):
 	document_number = models.CharField(max_length=50)
+	document_title = models.CharField(max_length=50)
 
 	def __str__(self):
 		return self.document_number
+
 
 class IntNCReportBasic(models.Model):
 	order_number = models.CharField(max_length=50)
