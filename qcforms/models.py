@@ -15,7 +15,7 @@ class IntNCReportBasic(models.Model):
 	report_number = models.CharField(max_length=50)
 	report_date = models.DateField()
 	issue_summary = models.TextField()
-	issue_image = models.ImageField(upload_to='img/')
+	issue_image = models.ImageField(upload_to='int-nc-form/')
 
 	def __str__(self):
 		return self.report_number
