@@ -22,7 +22,9 @@ function myFunc() {
 
 function get_signed_request(file){
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "{% url 'qcforms:int_nc_sign_s3' %}?file_name="+file.name+"&file_type="+file.type);
+	// sign_s3_url is defined in a script at the bottom of the template
+	// to allow for the use of Django URL template tags
+	xhr.open("GET", sign_s3_url+"?file_name="+file.name+"&file_type="+file.type);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){

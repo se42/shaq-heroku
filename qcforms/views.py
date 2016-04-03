@@ -1,6 +1,6 @@
 import datetime
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.template import loader
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -81,9 +81,9 @@ def int_nc_report_form(request, report_id):
 			return render(request, 'qcforms/int-nc-report-form.html', context)
 
 def int_nc_sign_s3(request):
-	AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY')
-	AWS_SECRET_KEY = os.environ.get('AWS_SECRET_KEY')
-	AWS_S3_BUCKET = os.environ.get('AWS_S3_BUCKET')
+	AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY']
+	AWS_SECRET_KEY = os.environ['AWS_SECRET_KEY']
+	AWS_S3_BUCKET = os.environ['AWS_S3_BUCKET']
 
 	td = datetime.datetime.today()
 	year = td.year
@@ -101,7 +101,7 @@ def int_nc_sign_s3(request):
 	expires = int(time.time()+60*60*24)
 	# amz_headers = "x-amz-acl:public-read"
 
-	string_to_sign = "PUT\n\n{mime}\n{exp}\n/{bucket}/{name}".format(
+	string_to_sign = "PUT\n\n{mime}\n{exp}\n/{bucket}/int-nc-form/{name}".format(
 		mime=mime_type, exp=expires, bucket=AWS_S3_BUCKET, name=object_name)
 
 	encodedSecretKey = AWS_SECRET_KEY.encode()
@@ -110,7 +110,8 @@ def int_nc_sign_s3(request):
 	hDigest = h.digest()
 	signature = base64.encodebytes(hDigest).strip()
 	signature = urllib.parse.quote_plus(signature)
-	url = 'https://s3.amazonaws.com/{bucket}/int-nc-form/{name}'.format(AWS_S3_BUCKET, object_name)
+	url = 'https://s3.amazonaws.com/{bucket}/int-nc-form/{name}'.format(
+		bucket=AWS_S3_BUCKET, name=object_name)
 
 	return JsonResponse({
 		'signed_request': '{url}?AWSAccessKeyId={key}&Expires={exp}&Signature={sig}'.format(

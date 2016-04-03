@@ -12,7 +12,7 @@
 <div class="container">
 	<h1>Interior NC Report Form</h1>
 
-	<form action="{% url 'qcforms:int-nc-report-form' report_id %}" method="post" class="form">
+	<form action="{% url 'qcforms:int-nc-form' report_id %}" method="post" class="form">
 			{% csrf_token %}
 
 			{% bootstrap_form form %}
@@ -36,5 +36,6 @@
 {% endblock main %}
 
 {% block scripts %}
+<script type="text/javascript">var sign_s3_url="{% url 'qcforms:int_nc_sign_s3' %}"</script>
 <script src="{% static 'qcforms/int-nc-report-form.js' %}"></script>
 {% endblock scripts %}
