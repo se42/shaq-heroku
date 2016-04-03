@@ -18,10 +18,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 try:
-    from .local_settings import set_local_env_variables
-    set_local_env_variables()
+	from .local_settings import set_local_env_variables
+	set_local_env_variables()
 except ImportError:
-    pass
+	pass
 
 # SECURITY WARNING: keep the secret key and DB credentials used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -47,44 +47,44 @@ LOGIN_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'qcforms.apps.QcformsConfig',
-    'bootstrap3',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'qcforms.apps.QcformsConfig',
+	'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.security.SecurityMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'shaq.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-            'debug': DEBUG,
-        },
-    },
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [os.path.join(BASE_DIR, 'templates')],
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'context_processors': [
+				'django.template.context_processors.debug',
+				'django.template.context_processors.request',
+				'django.contrib.auth.context_processors.auth',
+				'django.contrib.messages.context_processors.messages',
+			],
+			'debug': DEBUG,
+		},
+	},
 ]
 
 WSGI_APPLICATION = 'shaq.wsgi.application'
@@ -94,29 +94,29 @@ WSGI_APPLICATION = 'shaq.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-            'OPTIONS': {
-                'min_length': 12,
-            },
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+	{
+		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+			'OPTIONS': {
+				'min_length': 12,
+			},
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+	},
 ]
 
 BOOTSTRAP3 = {
-    # The complete URL to the Bootstrap CSS file (None means no theme)
-    'theme_url': "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css",
+	# The complete URL to the Bootstrap CSS file (None means no theme)
+	'theme_url': "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css",
 
-    # Include jQuery with Bootstrap JavaScript (affects django-bootstrap3 template tags)
-    'include_jquery': True,
+	# Include jQuery with Bootstrap JavaScript (affects django-bootstrap3 template tags)
+	'include_jquery': True,
 }
 
 # Internationalization
@@ -138,12 +138,12 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
+	os.path.join(PROJECT_ROOT, 'static'),
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 try:
-    from .local_settings import *
+	from .local_settings import *
 except ImportError:
-    pass
+	pass
