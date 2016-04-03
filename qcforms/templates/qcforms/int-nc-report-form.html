@@ -12,7 +12,7 @@
 <div class="container">
 	<h1>Interior NC Report Form</h1>
 
-	<form enctype="multipart/form-data" action="{% url 'qcforms:int-nc-form' report_id %}" method="post" class="form">
+	<form action="{% url 'qcforms:int-nc-report-form' report_id %}" method="post" class="form">
 			{% csrf_token %}
 
 			{% bootstrap_form form %}
@@ -20,9 +20,21 @@
 			{% buttons submit='Submit' reset='Reset' %}
 			{% endbuttons %}
 	</form>
+
+	<div class="form-group">
+		<label class="control-label" for="file_input">Issue image</label>
+		<div class="row bootstrap3-multi-input">
+			<div class="col-xs-12">
+				<input id="file_input" type="file"/>
+				<p id="status">Please select a file</p>
+				<img id="preview" src="http://placehold.it/200x200">
+			</div>
+		</div>
+	</div>
+
 </div>
 {% endblock main %}
 
 {% block scripts %}
-<script src="{% static 'qcforms/report-form.js' %}"></script>
+<script src="{% static 'qcforms/int-nc-report-form.js' %}"></script>
 {% endblock scripts %}

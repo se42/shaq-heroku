@@ -132,7 +132,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_URL = 'https://s3.amazonaws.com/shaq-uploads/'
+# MEDIA_URL = 'https://s3.amazonaws.com/shaq-uploads/'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'

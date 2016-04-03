@@ -32,7 +32,7 @@ Interior NC {{ report.report_number }}
 			</tr>
 			<tr>
 				<td>ISSUE IMAGE(S)</td>
-				<td><a href="{{ MEDIA_URL }}{{ report.issue_image }}"><img src="{{ MEDIA_URL }}{{ report.issue_image }}" class="img-responsive"></a></td>
+				<td><a href="{{ report.issue_image_url }}"><img src="{{ report.issue_image_url }}" class="img-responsive"></a></td>
 			</tr>
 		</table>
 	{% else %}

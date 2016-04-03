@@ -8,6 +8,9 @@ from django.views import generic
 
 from . import models, forms
 
+import time, os, json, base64, hmac, urllib.parse
+from hashlib import sha1
+
 
 class IndexView(generic.ListView):
 	"""
@@ -51,23 +54,13 @@ class IntNCDetailView(generic.DetailView):
 
 def int_nc_report_form(request, report_id):
 	if request.method == 'POST':
-		file_dict = request.FILES
-		t = datetime.date.today()
-		year = t.year
-		month = t.month
-		day = t.day
-		rnum = request.POST['report_number']
-		for each in file_dict.keys():
-			file_dict[each].name = '{y}{m}{d}-{r}-'.format(
-				y=year, m=month, d=day, r=rnum) + file_dict[each].name
-
 		if report_id == 'new':
-			form = forms.IntNCReportBasicForm(request.POST, file_dict)
+			form = forms.IntNCReportBasicForm(request.POST)
 			report = form.save()
 			return HttpResponseRedirect(reverse('qcforms:int-nc-detail', args=(report.id,)))
 		else:
 			report = get_object_or_404(models.IntNCReportBasic, pk=report_id)
-			form = forms.IntNCReportBasicForm(request.POST, file_dict, instance=report)
+			form = forms.IntNCReportBasicForm(request.POST, instance=report)
 			report = form.save()
 			return HttpResponseRedirect(reverse('qcforms:int-nc-detail', args=(report.id,)))
 	else:
@@ -86,4 +79,47 @@ def int_nc_report_form(request, report_id):
 				'report_id': report_id,
 			}
 			return render(request, 'qcforms/int-nc-report-form.html', context)
+
+def int_nc_sign_s3(request):
+	AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY')
+	AWS_SECRET_KEY = os.environ.get('AWS_SECRET_KEY')
+	AWS_S3_BUCKET = os.environ.get('AWS_S3_BUCKET')
+
+	td = datetime.datetime.today()
+	year = td.year
+	month = td.month
+	day = td.day
+	hour = td.hour
+	minute = td.minute
+	sec = td.second
+
+	mime_type = request.GET['file_type']
+	object_name = urllib.parse.quote_plus(request.GET['file_name'])
+	object_name = '{y}{m}{d}{h}{n}{s}-{f}'.format(
+			y=year, m=month, d=day, h=hour, n=minute, s=sec, f=object_name)
+
+	expires = int(time.time()+60*60*24)
+	# amz_headers = "x-amz-acl:public-read"
+
+	string_to_sign = "PUT\n\n{mime}\n{exp}\n/{bucket}/{name}".format(
+		mime=mime_type, exp=expires, bucket=AWS_S3_BUCKET, name=object_name)
+
+	encodedSecretKey = AWS_SECRET_KEY.encode()
+	encodedString = string_to_sign.encode()
+	h = hmac.new(encodedSecretKey, encodedString, sha1)
+	hDigest = h.digest()
+	signature = base64.encodebytes(hDigest).strip()
+	signature = urllib.parse.quote_plus(signature)
+	url = 'https://s3.amazonaws.com/{bucket}/int-nc-form/{name}'.format(AWS_S3_BUCKET, object_name)
+
+	return JsonResponse({
+		'signed_request': '{url}?AWSAccessKeyId={key}&Expires={exp}&Signature={sig}'.format(
+			url=url, key=AWS_ACCESS_KEY, exp=expires, sig=signature),
+		'url': url,
+	})
+
+
+
+
+
 

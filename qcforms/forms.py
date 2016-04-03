@@ -11,6 +11,6 @@ class IntNCReportBasicForm(ModelForm):
 			'vin',
 			'report_date',
 			'issue_summary',
-			'issue_image',
+			'issue_image_url',
 		]
 
