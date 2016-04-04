@@ -85,39 +85,35 @@ def int_nc_sign_s3(request):
 	AWS_SECRET_KEY = os.environ['AWS_SECRET_KEY']
 	AWS_S3_BUCKET = os.environ['AWS_S3_BUCKET']
 
-	td = datetime.datetime.today()
-	year = td.year
-	month = td.month
-	day = td.day
-	hour = td.hour
-	minute = td.minute
-	sec = td.second
-
 	mime_type = request.GET['file_type']
-	object_name = urllib.parse.quote_plus(request.GET['file_name'])
-	object_name = '{y}{m}{d}{h}{n}{s}-{f}'.format(
-			y=year, m=month, d=day, h=hour, n=minute, s=sec, f=object_name)
+	allowed_types = ['image/jpeg', 'image/png']
 
-	expires = int(time.time()+60*60*24)
-	# amz_headers = "x-amz-acl:public-read"
+	if mime_type in allowed_types:
+		object_name = urllib.parse.quote_plus(request.GET['file_name'])
+		object_name = '{t:%Y%m%d%H%M%S}-{f}'.format(t=datetime.datetime.today(), f=object_name)
 
-	string_to_sign = "PUT\n\n{mime}\n{exp}\n/{bucket}/int-nc-form/{name}".format(
-		mime=mime_type, exp=expires, bucket=AWS_S3_BUCKET, name=object_name)
+		expires = int(time.time()+60*60*24)
+		# amz_headers = "x-amz-acl:public-read"
 
-	encodedSecretKey = AWS_SECRET_KEY.encode()
-	encodedString = string_to_sign.encode()
-	h = hmac.new(encodedSecretKey, encodedString, sha1)
-	hDigest = h.digest()
-	signature = base64.encodebytes(hDigest).strip()
-	signature = urllib.parse.quote_plus(signature)
-	url = 'https://s3.amazonaws.com/{bucket}/int-nc-form/{name}'.format(
-		bucket=AWS_S3_BUCKET, name=object_name)
+		string_to_sign = "PUT\n\n{mime}\n{exp}\n/{bucket}/int-nc-form/{name}".format(
+			mime=mime_type, exp=expires, bucket=AWS_S3_BUCKET, name=object_name)
 
-	return JsonResponse({
-		'signed_request': '{url}?AWSAccessKeyId={key}&Expires={exp}&Signature={sig}'.format(
-			url=url, key=AWS_ACCESS_KEY, exp=expires, sig=signature),
-		'url': url,
-	})
+		encodedSecretKey = AWS_SECRET_KEY.encode()
+		encodedString = string_to_sign.encode()
+		h = hmac.new(encodedSecretKey, encodedString, sha1)
+		hDigest = h.digest()
+		signature = base64.encodebytes(hDigest).strip()
+		signature = urllib.parse.quote_plus(signature)
+		url = 'https://s3.amazonaws.com/{bucket}/int-nc-form/{name}'.format(
+			bucket=AWS_S3_BUCKET, name=object_name)
+
+		return JsonResponse({
+			'signed_request': '{url}?AWSAccessKeyId={key}&Expires={exp}&Signature={sig}'.format(
+				url=url, key=AWS_ACCESS_KEY, exp=expires, sig=signature),
+			'url': url,
+		})
+	else:
+		return None
 
 
 
