@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django.forms.widgets import DateInput, URLInput
 
 from . import models
 
@@ -13,4 +14,8 @@ class IntNCReportBasicForm(ModelForm):
 			'issue_summary',
 			'issue_image_url',
 		]
+		widgets = {
+			'report_date': DateInput(attrs={'type': 'date',}),
+			# 'issue_image_url': URLInput(attrs={'type': 'hidden',}),
+		}
 
