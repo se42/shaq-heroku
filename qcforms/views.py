@@ -1,29 +1,38 @@
+import base64
 import datetime
+import hmac
+import json
+import os
+import time
+import urllib.parse
+from hashlib import sha1
 
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.template import loader
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views import generic
 
+from shaq.utils import active_and_login_required
 from . import models, forms
 
-import time, os, json, base64, hmac, urllib.parse
-from hashlib import sha1
 
-
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
 	"""
 	Index view to display all available QC forms.
 	"""
-	template_name = 'qcforms/qcforms-index.html'
+	template_name = 'qcforms/qcforms_index.html'
 	context_object_name = 'report_list'
 
 	def get_queryset(self):
 		return models.ReportBasic.objects.order_by('document_number')
 
+	def test_func(self):
+		return self.request.user.is_active
 
-class IntNCReportDeleteView(generic.edit.DeleteView):
+
+class IntNCReportDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.edit.DeleteView):
 	"""
 	Generic delete view.  Provide template_name and success_url as
 	arguments in the as_view() function within the url.
@@ -32,37 +41,48 @@ class IntNCReportDeleteView(generic.edit.DeleteView):
 	template_name = None # 'qcforms/delete.html'
 	success_url = None # reverse_lazy('qcforms:index')
 
+	def test_func(self):
+		return self.request.user.is_active
 
-class IntNCIndexView(generic.ListView):
+
+class IntNCIndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
 	"""
 	Index view to display all instances of the Interior Component NC Form
 	"""
-	template_name = 'qcforms/int-nc-index.html'
+	template_name = 'qcforms/int_nc_index.html'
 	context_object_name = 'report_list'
 
 	def get_queryset(self):
 		return models.IntNCReportBasic.objects.order_by('report_date')
 
+	def test_func(self):
+		return self.request.user.is_active
 
-class IntNCDetailView(generic.DetailView):
+
+class IntNCDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
 	"""
 	Detail view to display specific instances of the Interior Component NC Form
 	"""
 	model = models.IntNCReportBasic
-	template_name = 'qcforms/int-nc-detail.html'
+	template_name = 'qcforms/int_nc_detail.html'
+	context_object_name = 'report'
+
+	def test_func(self):
+		return self.request.user.is_active
 
 
+@active_and_login_required
 def int_nc_report_form(request, report_id):
 	if request.method == 'POST':
 		if report_id == 'new':
 			form = forms.IntNCReportBasicForm(request.POST)
 			report = form.save()
-			return HttpResponseRedirect(reverse('qcforms:int-nc-detail', args=(report.id,)))
+			return HttpResponseRedirect(reverse('qcforms:int_nc_detail', args=(report.id,)))
 		else:
 			report = get_object_or_404(models.IntNCReportBasic, pk=report_id)
 			form = forms.IntNCReportBasicForm(request.POST, instance=report)
 			report = form.save()
-			return HttpResponseRedirect(reverse('qcforms:int-nc-detail', args=(report.id,)))
+			return HttpResponseRedirect(reverse('qcforms:int_nc_detail', args=(report.id,)))
 	else:
 		if report_id == 'new':
 			form = forms.IntNCReportBasicForm()
@@ -70,7 +90,7 @@ def int_nc_report_form(request, report_id):
 				'form': form,
 				'report_id': report_id,
 			}
-			return render(request, 'qcforms/int-nc-report-form.html', context)
+			return render(request, 'qcforms/int_nc_report_form.html', context)
 		else:
 			report = get_object_or_404(models.IntNCReportBasic, pk=report_id)
 			form = forms.IntNCReportBasicForm(instance=report)
@@ -78,7 +98,11 @@ def int_nc_report_form(request, report_id):
 				'form': form,
 				'report_id': report_id,
 			}
-			return render(request, 'qcforms/int-nc-report-form.html', context)
+			return render(request, 'qcforms/int_nc_report_form.html', context)
+
+
+####
+# Javascript auth endpoints
 
 def int_nc_sign_s3(request):
 	AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY']

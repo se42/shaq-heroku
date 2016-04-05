@@ -1,5 +1,7 @@
 {% extends 'shaq/project_base.html' %}
 
+{% load staticfiles %}
+
 {% block title %}
 Interior NC {{ report.report_number }}
 {% endblock title %}
@@ -7,7 +9,7 @@ Interior NC {{ report.report_number }}
 {% block main %}
 <div class="container">
 	<h1>REPORT DETAIL</h1>
-	<p><a class="btn btn-warning" href="{% url 'qcforms:int-nc-form' report.id %}" role="button">Edit Report</a></p>
+	<p><a class="btn btn-warning" href="{% url 'qcforms:int_nc_form' report.id %}" role="button">Edit Report</a></p>
 	{% if report %}
 		<table class="table table-bordered table-hover table-responsive">
 			<tr>
@@ -32,7 +34,7 @@ Interior NC {{ report.report_number }}
 			</tr>
 			<tr>
 				<td>ISSUE IMAGE(S)</td>
-				<td><a href="{{ report.issue_image_url }}"><img src="{{ report.issue_image_url }}" class="img-responsive"></a></td>
+				<td><img id="preview" src="{{ report.issue_image_url }}" class="img-responsive"></td>
 			</tr>
 		</table>
 	{% else %}
@@ -40,3 +42,10 @@ Interior NC {{ report.report_number }}
 	{% endif %}
 </div>
 {% endblock main %}
+
+{% block scripts %}
+<script type="text/javascript">
+var sign_s3_GET_url="{% url 'qcforms:sign_s3_GET' %}"
+</script>
+<script src="{% static 'qcforms/qcforms_int_nc_detail.js' %}"></script>
+{% endblock scripts %}

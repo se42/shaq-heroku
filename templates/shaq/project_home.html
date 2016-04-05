@@ -5,7 +5,42 @@ shaq home
 {% endblock title %}
 
 {% block main %}
-<div class="container">
-	<p class="lead">Welcome to project shaq!</p>
-</div>
+	<div class="container">
+		<h2>App Index</h2><br>
+		<div class="row text-center">
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				<div class="thumbnail">
+					<a href="{% url 'qcforms:int_nc_index' %}">
+					<span class="fa-stack fa-4x">
+						<i class="fa fa-circle fa-stack-2x text-primary"></i>
+						<i class="fa fa-check-square fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">QC Forms</h4>
+					</a>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				<div class="thumbnail">
+					<a href="#link">
+					<span class="fa-stack fa-4x">
+						<i class="fa fa-circle fa-stack-2x text-primary"></i>
+						<i class="fa fa-database fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">App 2</h4>
+					</a>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				<div class="thumbnail">
+					<a href="#link">
+					<span class="fa-stack fa-4x">
+						<i class="fa fa-circle fa-stack-2x text-primary"></i>
+						<i class="fa fa-gears fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">App 3</h4>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock main %}

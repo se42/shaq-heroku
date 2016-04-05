@@ -16,6 +16,6 @@ class IntNCReportBasicForm(ModelForm):
 		]
 		widgets = {
 			'report_date': DateInput(attrs={'type': 'date',}),
-			# 'issue_image_url': URLInput(attrs={'type': 'hidden',}),
+			'issue_image_url': URLInput(attrs={'type': 'hidden',}),
 		}
 

@@ -1,3 +1,10 @@
+document.body.onload = function() {
+	var url_field = document.getElementById("id_issue_image_url");
+	if (url_field.hasAttribute("value")) {
+		get_signed_GET_request(url_field.value);
+	};
+}
+
 // S3 direct uploads per https://devcenter.heroku.com/articles/s3-upload-python
 (function() {
 	document.getElementById("file_input").onchange = function(){
@@ -49,11 +56,6 @@ function upload_file(file, signed_request, url){
 }
 
 // my attempt at producing a signed GET request for private images
-// (function() {
-// 	document.getElementById("preview").onchange = function(){
-// 		get_signed_GET_request(document.getElementById("preview").src);
-// 	};
-// })();
 
 function get_signed_GET_request(resource_url){
 	var xhr = new XMLHttpRequest();
