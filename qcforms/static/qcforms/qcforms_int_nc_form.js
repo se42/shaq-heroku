@@ -26,8 +26,7 @@
 // S3 direct uploads per https://devcenter.heroku.com/articles/s3-upload-python
 function get_signed_request(file){
 	var xhr = new XMLHttpRequest();
-	// var amz_sign_s3 is defined in a script at the bottom of the
-	// template to allow for the use of Django URL template tags
+	// var amz_sign_s3 is defined in script on HTML page
 	xhr.open("GET", amz_sign_s3+"?file_name="+file.name+"&file_type="+file.type+"&folder=int-nc-form");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4){
