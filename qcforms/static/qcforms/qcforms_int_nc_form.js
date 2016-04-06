@@ -1,22 +1,28 @@
-document.body.onload = function() {
-	var url_field = document.getElementById("id_issue_image_url");
-	if (url_field.hasAttribute("value")) {
-		get_signed_GET_request(url_field.value);
+// GET private image resource for thumbnail if issue_image_url exists
+(function() {
+	document.body.onload = function() {
+		var url_field = document.getElementById("id_issue_image_url");
+		if (url_field.hasAttribute("value")) {
+			get_signed_GET_request(url_field.value);
+		};
 	};
-}
+})();
+
+// Monitor file_input file input object for changes to initiate PUT sequence
+(function() {
+    document.getElementById("file_input").onchange = function(){
+        var files = document.getElementById("file_input").files;
+        var file = files[0];
+        if(file == null){
+            alert("No file selected.");
+        }
+        else{
+            get_signed_request(file);
+        }
+    };
+})();
 
 // S3 direct uploads per https://devcenter.heroku.com/articles/s3-upload-python
-document.getElementById("file_input").onchange = function(){
-		var files = document.getElementById("file_input").files;
-		var file = files[0];
-		if (file == null){
-			alert("No file selected.");
-		}
-		else{
-			get_signed_request(file);
-		}
-}
-
 function get_signed_request(file){
 	var xhr = new XMLHttpRequest();
 	// var sign_s3_url is defined in a script at the bottom of the
@@ -51,8 +57,7 @@ function upload_file(file, signed_request, url){
 	xhr.send(file);
 }
 
-// my attempt at producing a signed GET request for private images
-
+// Obtain and send signed GET request for private images
 function get_signed_GET_request(resource_url){
 	var xhr = new XMLHttpRequest();
 	// var sign_s3_GET_url is defined in a script at the bottom of the

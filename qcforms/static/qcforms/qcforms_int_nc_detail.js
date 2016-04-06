@@ -1,7 +1,5 @@
-document.body.onload = function(){
-	var url = document.getElementById("preview").src;
-	get_signed_GET_request(url);
-}
+// GET private image resource for thumbnail
+document.body.onload = get_signed_GET_request(document.getElementById("preview").src);
 
 function get_signed_GET_request(resource_url){
 	var xhr = new XMLHttpRequest();
