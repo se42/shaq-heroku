@@ -20,6 +20,9 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+		<!-- Font Awesome CDN -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 		<!-- Custom styles for this template -->
 		{% load staticfiles %}
 		<link href="{% static 'shaq/css/project_base.css' %}" rel="stylesheet">
@@ -100,5 +103,8 @@
 
 			})();
 		</script>
+
+		{% block scripts %}
+		{% endblock scripts %}
 	</body>
 </html>

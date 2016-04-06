@@ -1,0 +1,54 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block title %}Report Form{% endblock title %}
+
+{% block head %}
+	{% load bootstrap3 %}
+	{% bootstrap_messages %}
+	{% load staticfiles %}
+{% endblock head %}
+
+{% block main %}
+<div class="container">
+	<h1>Interior NC Report Form</h1>
+
+	<div class="form-group">
+		<h3>Issue Images</h3>
+		<p>NOTE:  Images are automatically and instantly stored in S3 when selected.</p>
+		<div class="row bootstrap3-multi-input">
+			<div class="col-xs-12 col-sm-4">
+				<label class="control-label" for="file_input">Issue Image 1</label>
+				<input id="file_input" type="file"/></br>
+				<img class="img-responsive" id="preview" src="http://placehold.it/200x200">
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<label class="control-label" for="file_input_2">Issue Image 2</label>
+				<input id="file_input_2" type="file"/></br>
+				<img class="img-responsive" id="preview_2" src="http://placehold.it/200x200">
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<label class="control-label" for="file_input_3">Issue Image 3</label>
+				<input id="file_input_3" type="file"/></br>
+				<img class="img-responsive" id="preview_3" src="http://placehold.it/200x200">
+			</div>
+		</div>
+	</div>
+
+	<h3>General Information</h3>
+	<form action="{% url 'qcforms:int_nc_form' report_id %}" method="post" class="form">
+			{% csrf_token %}
+			{% bootstrap_form form %}
+			{% buttons submit='Submit' reset='Reset' %}
+			{% endbuttons %}
+	</form>
+
+</div>
+{% endblock main %}
+
+{% block scripts %}
+<script type="text/javascript">
+var sign_s3_url="{% url 'qcforms:int_nc_sign_s3' %}"
+var sign_s3_GET_url="{% url 'qcforms:sign_s3_GET' %}"
+</script>
+<script src="{% static 'qcforms/qcforms_int_nc_form.js' %}"></script>
+{% endblock scripts %}
