@@ -1,3 +1,4 @@
+// GET private image resource for thumbnail
 document.body.onload = get_signed_GET_request(document.getElementById("preview").src);
 
 function get_signed_GET_request(resource_url){
