@@ -161,7 +161,7 @@ def amz_sign_s3(request):
 			return _amz_sign_s3_PUT(request)
 		else:
 			return None
-	elif request.GET['resource_url']
+	elif request.GET['resource_url']:
 		return _amz_sign_s3_GET(request)
 	else:
 		return None
