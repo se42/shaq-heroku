@@ -45,7 +45,7 @@ Interior NC {{ report.report_number }}
 
 {% block scripts %}
 <script type="text/javascript">
-var sign_s3_GET_url="{% url 'qcforms:sign_s3_GET' %}"
+var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}"
 </script>
 <script src="{% static 'qcforms/qcforms_int_nc_detail.js' %}"></script>
 {% endblock scripts %}

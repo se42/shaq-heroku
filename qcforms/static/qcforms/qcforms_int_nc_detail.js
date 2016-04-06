@@ -3,9 +3,9 @@ document.body.onload = get_signed_GET_request(document.getElementById("preview")
 
 function get_signed_GET_request(resource_url){
 	var xhr = new XMLHttpRequest();
-	// var sign_s3_GET_url is defined in a script at the bottom of the
+	// var amz_sign_s3 is defined in a script at the bottom of the
 	// template to allow for the use of Django URL template tags
-	xhr.open("GET", sign_s3_GET_url+"?resource_url="+resource_url);
+	xhr.open("GET", amz_sign_s3+"?resource_url="+resource_url);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){
