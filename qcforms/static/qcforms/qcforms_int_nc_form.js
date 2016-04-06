@@ -1,8 +1,18 @@
-document.body.onload = function() {
-	if (document.getElementById("id_issue_image_url").hasAttribute("value")) {
-		get_signed_GET_request(url_field.value);
+// document.body.onload = function() {
+// 	var url_field = document.getElementById("id_issue_image_url");
+// 	if (url_field.hasAttribute("value")) {
+// 		get_signed_GET_request(url_field.value);
+// 	};
+// }
+
+(function() {
+	document.body.onload = function() {
+		var url_field = document.getElementById("id_issue_image_url");
+		if (url_field.hasAttribute("value")) {
+			get_signed_GET_request(url_field.value);
+		}
 	};
-}
+})();
 
 // S3 direct uploads per https://devcenter.heroku.com/articles/s3-upload-python
 (function() {

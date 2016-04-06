@@ -1,8 +1,3 @@
-// document.body.onload = function(){
-// 	var url = document.getElementById("preview").src;
-// 	get_signed_GET_request(url);
-// }
-
 document.body.onload = get_signed_GET_request(document.getElementById("preview").src);
 
 function get_signed_GET_request(resource_url){
