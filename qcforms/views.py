@@ -101,44 +101,6 @@ def int_nc_report_form(request, report_id):
 			return render(request, 'qcforms/int_nc_report_form.html', context)
 
 
-####
-# Javascript auth endpoints
-
-# def int_nc_sign_s3(request):
-# 	AWS_S3_BUCKET = os.environ['AWS_S3_BUCKET']
-
-# 	mime_type = request.GET['file_type']
-# 	allowed_types = ['image/jpeg', 'image/png']
-
-# 	if mime_type in allowed_types:
-# 		object_name = urllib.parse.quote_plus(request.GET['file_name'])
-# 		object_name = '{t:%Y%m%d%H%M%S}-{f}'.format(t=datetime.datetime.today(), f=object_name)
-
-# 		expires = int(time.time()+60*60*24)
-
-# 		string_to_sign = "PUT\n\n{mime}\n{exp}\n/{bucket}/int-nc-form/{name}".format(
-# 			mime=mime_type, exp=expires, bucket=AWS_S3_BUCKET, name=object_name)
-
-# 		signature = _amz_create_signature(string_to_sign)
-
-# 		url = 'https://s3.amazonaws.com/{bucket}/int-nc-form/{name}'.format(
-# 			bucket=AWS_S3_BUCKET, name=object_name)
-
-# 		return _amz_signed_request_json(url, expires, signature)
-# 	else:
-# 		return None
-
-# def sign_s3_GET(request):
-# 	full_url = request.GET['resource_url']
-# 	prefix = 'https://s3.amazonaws.com'
-# 	uri = full_url[len(prefix):]
-# 	expires = int(time.time()+60*60*24)
-# 	string_to_sign = "GET\n\n\n{exp}\n{uri}".format(exp=expires, uri=uri)
-# 	signature = _amz_create_signature(string_to_sign)
-
-# 	return _amz_signed_request_json(full_url, expires, signature)
-
-
 def amz_sign_s3(request):
 	"""
 	View for issuing signed requests to PUT/GET resources on S3.  Behavior
