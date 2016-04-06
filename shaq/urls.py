@@ -25,6 +25,7 @@ def home_uri(request):
 
 urlpatterns = [
 	url(r'^$', home_uri, name='site_home'),
+	url(r'^qcforms/', include('qcforms.urls')),
 	url(r'^accounts/', include('django.contrib.auth.urls')),
 	url(r'^admin/', admin.site.urls),
 ]
