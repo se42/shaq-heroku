@@ -6,8 +6,7 @@ document.body.onload = function() {
 }
 
 // S3 direct uploads per https://devcenter.heroku.com/articles/s3-upload-python
-(function() {
-	document.getElementById("file_input").onchange = function(){
+document.getElementById("file_input").onchange = function(){
 		var files = document.getElementById("file_input").files;
 		var file = files[0];
 		if (file == null){
@@ -16,8 +15,7 @@ document.body.onload = function() {
 		else{
 			get_signed_request(file);
 		}
-	};
-})();
+}
 
 function get_signed_request(file){
 	var xhr = new XMLHttpRequest();
@@ -41,10 +39,8 @@ function get_signed_request(file){
 function upload_file(file, signed_request, url){
 	var xhr = new XMLHttpRequest();
 	xhr.open("PUT", signed_request);
-	// xhr.setRequestHeader('x-amz-acl', 'public-read');
 	xhr.onload = function() {
 		if (xhr.status === 200) {
-			// document.getElementById("preview").src = url;
 			document.getElementById("id_issue_image_url").value = url;
 			get_signed_GET_request(url);
 		}

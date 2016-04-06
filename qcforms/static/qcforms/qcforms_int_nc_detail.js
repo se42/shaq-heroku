@@ -1,11 +1,3 @@
-// S3 direct uploads per https://devcenter.heroku.com/articles/s3-upload-python
-// (function() {
-// 	document.getElementById("preview").onload = function(){
-// 		var url = document.getElementById("preview").src;
-// 		get_signed_GET_request(url);
-// 	};
-// })();
-
 document.body.onload = function(){
 	var url = document.getElementById("preview").src;
 	get_signed_GET_request(url);

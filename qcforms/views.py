@@ -117,7 +117,6 @@ def int_nc_sign_s3(request):
 		object_name = '{t:%Y%m%d%H%M%S}-{f}'.format(t=datetime.datetime.today(), f=object_name)
 
 		expires = int(time.time()+60*60*24)
-		# amz_headers = "x-amz-acl:public-read"
 
 		string_to_sign = "PUT\n\n{mime}\n{exp}\n/{bucket}/int-nc-form/{name}".format(
 			mime=mime_type, exp=expires, bucket=AWS_S3_BUCKET, name=object_name)
@@ -148,14 +147,7 @@ def sign_s3_GET(request):
 	prefix = 'https://s3.amazonaws.com'
 	uri = full_url[len(prefix):]
 
-	# mime_type = request.GET['file_type']
-	# allowed_types = ['image/jpeg', 'image/png']
-
-	# object_name = urllib.parse.quote_plus(request.GET['file_name'])
-	# object_name = '{t:%Y%m%d%H%M%S}-{f}'.format(t=datetime.datetime.today(), f=object_name)
-
 	expires = int(time.time()+60*60*24)
-	# amz_headers = "x-amz-acl:public-read"
 
 	string_to_sign = "GET\n\n\n{exp}\n{uri}".format(exp=expires, uri=uri)
 
@@ -165,8 +157,6 @@ def sign_s3_GET(request):
 	hDigest = h.digest()
 	signature = base64.encodebytes(hDigest).strip()
 	signature = urllib.parse.quote_plus(signature)
-	# url = 'https://s3.amazonaws.com/{bucket}/int-nc-form/{name}'.format(
-	# 	bucket=AWS_S3_BUCKET, name=object_name)
 
 	return JsonResponse({
 		'signed_request': '{url}?AWSAccessKeyId={key}&Expires={exp}&Signature={sig}'.format(
