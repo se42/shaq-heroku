@@ -155,13 +155,23 @@ def amz_sign_s3(request):
 		xhr.open("GET", amz_s3_url+"?resource_url="+resource_url);
 
 	"""
-	if request.GET['file_name'] and request.GET['file_type'] and request.GET['folder']:
+	PUT_conditions = [
+		'file_name' in request.GET,
+		'file_type' in request.GET,
+		'folder' in request.GET,
+	]
+
+	GET_conditions = [
+		'resource_url' in request.GET,
+	]
+
+	if all(PUT_conditions):
 		allowed_types = ['image/jpeg', 'image/png']
 		if request.GET['file_type'] in allowed_types:
 			return _amz_sign_s3_PUT(request)
 		else:
 			return None
-	elif request.GET['resource_url']:
+	elif all(GET_conditions):
 		return _amz_sign_s3_GET(request)
 	else:
 		return None
