@@ -15,7 +15,6 @@ class IntNCReportBasic(models.Model):
 	report_number = models.CharField(max_length=50)
 	report_date = models.DateField()
 	issue_summary = models.TextField()
-	# SHOULD THIS BE IMAGEFIELD OR URLFIELD???
 	issue_image_url = models.URLField()
 
 	def __str__(self):
