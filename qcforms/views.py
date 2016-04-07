@@ -101,6 +101,7 @@ def int_nc_report_form(request, report_id):
 			return render(request, 'qcforms/int_nc_report_form.html', context)
 
 
+@active_and_login_required
 def amz_sign_s3(request):
 	"""
 	View for issuing signed requests to PUT/GET resources on S3.  Behavior
