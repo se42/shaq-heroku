@@ -21,8 +21,8 @@ function get_private_S3_resource(element_ID){
 
 
 // Core function to PUT a file into a folder within the project's S3 bucket
-// cFunc takes URL as an argument and is the function to execute when the process is complete
-function upload_private_S3_resource(file, folder, cFunc) {
+// next_func takes URL as an argument and is the function to execute when the process is complete
+function upload_private_S3_resource(file, folder, next_func) {
 	var xhr = new XMLHttpRequest();
 	// var amz_sign_s3 is defined in script on HTML page
 	xhr.open("GET", amz_sign_s3+"?file_name="+file.name+"&file_type="+file.type+"&folder="+folder);
@@ -30,7 +30,7 @@ function upload_private_S3_resource(file, folder, cFunc) {
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){
 				var response = JSON.parse(xhr.responseText);
-				upload_file(file, response.signed_request, response.url, cFunc);
+				upload_file(file, response.signed_request, response.url, next_func);
 			}
 			else{
 				alert("Could not get signed URL.");
@@ -40,12 +40,12 @@ function upload_private_S3_resource(file, folder, cFunc) {
 	xhr.send();
 }
 
-function upload_file(file, signed_request, url, cFunc){
+function upload_file(file, signed_request, url, next_func){
 	var xhr = new XMLHttpRequest();
 	xhr.open("PUT", signed_request);
 	xhr.onload = function() {
-		if (xhr.status === 200) {
-			cFunc(url);
+		if (xhr.readyState === 4 && xhr.status === 200) {
+			next_func(url);
 		}
 	};
 	xhr.onerror = function() {
