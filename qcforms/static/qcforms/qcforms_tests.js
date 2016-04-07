@@ -27,7 +27,6 @@ QUnit.test("Target src is updated to properly signed URL", function(assert) {
 		assert.ok(updated_url.indexOf("AWSAccessKeyId") > -1, "Updated URL contains AWSAccessKeyId.");
 		assert.ok(updated_url.indexOf("Expires") > -1, "Updated URL contains Expires.");
 		assert.ok(updated_url.indexOf("Signature") > -1, "Updated URL contains Signature.");
-		check_signed_URL();
 		done();
 	}
 
@@ -35,19 +34,4 @@ QUnit.test("Target src is updated to properly signed URL", function(assert) {
 	setTimeout(check_urls, 2000);
 });
 
-function check_signed_URL() {
-	QUnit.test("Signed URL returns HTTP status 200", function(assert) {
-		var signed_url = document.getElementById("test-preview").src;
-		var done = assert.async();
 
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", signed_url);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState === 4) {
-				assert.ok(xhr.status == 200, "Signed URL returns 200 Http response.");
-				done();
-			}
-		};
-		xhr.send();
-	});
-}
