@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -19,3 +21,27 @@ class IntNCReportBasic(models.Model):
 
 	def __str__(self):
 		return self.report_number
+
+
+class IntNCReport(models.Model):
+
+	def gen_report_num(self):
+		date_tag = '{t:%Y%m%d}'.format(t=datetime.datetime.today())
+		order_date_pair = self.order_number + '-' + date_tag
+		x = IntNCReport.objects.filter(report_number__contains=order_date_pair)
+		uid = len(x) + 1
+		return '{order}-{t:%Y%m%d}-{uid}'.format(order=self.order_number,
+												t=date_tag, uid=uid)
+
+	doc_number = models.CharField('document number', max_length=10,
+									default='QC-001', editable=False)
+	doc_title = models.CharField('document title', max_length=50, editable=False,
+			default='Interior Component Non-Conformance Worksheet')
+	report_number = models.CharField(max_length=20, default=gen_report_num, editable=False)
+	order_number = models.CharField(max_length=20)
+
+	def __str__(self):
+		return self.report_number
+
+	
+
