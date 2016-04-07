@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>qcforms Javascript Tests</title>
+{% extends 'shaq/project_base.html' %}
+
+{% block title %}qcforms Javascript Tests{% endblock title %}
+
+{% block head %}
 	<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.0.css">
 	{% load staticfiles %}
-</head>
-<body>
+{% endblock head %}
+
+{% block main %}
+
+<div class="container">
 	<div id="qunit"></div>
 	<div id="qunit-fixture"></div>
 
@@ -32,12 +34,14 @@
 			</tr>
 		</table>
 	</div>
+</div>
+{% endblock main %}
 
-	<script src="https://code.jquery.com/qunit/qunit-1.23.0.js"></script>
-	<script type="text/javascript">
-		var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}"
-	</script>
-	<script src="{% static 'qcforms/qcforms.js' %}"></script>
-	<script src="{% static 'qcforms/qcforms_tests.js' %}"></script>
-</body>
-</html>
+{% block scripts %}
+<script src="https://code.jquery.com/qunit/qunit-1.23.0.js"></script>
+<script type="text/javascript">
+	var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}"
+</script>
+<script src="{% static 'qcforms/qcforms.js' %}"></script>
+<script src="{% static 'qcforms/qcforms_tests.js' %}"></script>
+{% endblock scripts %}
