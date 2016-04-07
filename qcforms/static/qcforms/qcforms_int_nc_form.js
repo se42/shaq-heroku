@@ -20,18 +20,16 @@
 		else{
 			// get_signed_request(file);
 			var folder = "int-nc-form";
-			var url = upload_private_S3_resource(file, folder);
-			if (url != undefined) {
-				document.getElementById("id_issue_image_url").value = url;
-				document.getElementById("preview").src = url;
-				get_private_S3_resource("preview");
-			}
-			else{
-				alert("Upload function did not return URL.")
-			}
+			upload_private_S3_resource(file, folder, update_form_page_elements);
 		}
 	};
 })();
+
+function update_form_page_elements(url) {
+	document.getElementById("id_issue_image_url").value = url;
+	document.getElementById("preview").src = url;
+	get_private_S3_resource("preview");
+}
 
 // S3 direct uploads per https://devcenter.heroku.com/articles/s3-upload-python
 // function get_signed_request(file){
