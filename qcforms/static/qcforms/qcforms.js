@@ -14,7 +14,8 @@ function get_signed_GET_request(element_ID, resource_url){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){
 				var response = JSON.parse(xhr.responseText);
-				get_and_update_resource(element_ID, response.signed_request);
+				// get_and_update_resource(element_ID, response.signed_request);
+				document.getElementById(element_ID).src = response.signed_request;
 			}
 			else{
 				alert("Could not get signed URL.");
@@ -24,16 +25,21 @@ function get_signed_GET_request(element_ID, resource_url){
 	xhr.send();
 }
 
-function get_and_update_resource(element_ID, signed_request){
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", signed_request);
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-			document.getElementById(element_ID).src = signed_request;
-		}
-	};
-	xhr.onerror = function() {
-		alert("Could not retrieve file.");
-	};
-	xhr.send();
-}
+// function get_and_update_resource(element_ID, signed_request){
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.open("GET", signed_request);
+// 	xhr.onload = function() {
+// 		if (xhr.status === 200) {
+// 			document.getElementById(element_ID).src = signed_request;
+// 		}
+// 	};
+// 	xhr.onerror = function() {
+// 		alert("Could not retrieve file.");
+// 	};
+// 	xhr.send();
+// }
+
+
+// function upload_private_S3_resource() {
+
+// }
