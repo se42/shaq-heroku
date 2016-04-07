@@ -29,7 +29,10 @@ function upload_private_S3_resource(file, folder) {
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){
 				var response = JSON.parse(xhr.responseText);
-				return upload_file(file, response.signed_request, response.url);
+				var complete = upload_file(file, response.signed_request, response.url);
+				if (complete) {
+					return response.url;
+				}
 			}
 			else{
 				alert("Could not get signed URL.");
@@ -47,7 +50,7 @@ function upload_file(file, signed_request, url){
 			// document.getElementById("id_issue_image_url").value = url;
 			// document.getElementById("preview").src = url;
 			// get_private_S3_resource("preview");
-			return url;
+			return true;
 		}
 	};
 	xhr.onerror = function() {
