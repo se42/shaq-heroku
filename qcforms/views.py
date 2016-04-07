@@ -189,6 +189,8 @@ def _amz_signed_request_json(url, expires, signature):
 		'url': url,
 	})
 
-
+@active_and_login_required
+def qcformsjstesting(request):
+	return render(request, 'qcforms/qcforms_tests.html')
 
 

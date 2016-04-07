@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>qcforms Javascript Tests</title>
+	<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.0.css">
+	{% load staticfiles %}
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+
+	<div style="border-style: solid; max-width: 33%; text-align: center;">
+		<h4>THESE SHOULD BE THE SAME</h4>
+		<p>TEST:  Test get_private_S3_resource</p>
+		<table>
+			<tr>
+				<th>REFERENCE</th>
+				<th>TEST IMAGE</th>
+			</tr>
+			<tr>
+				<td>
+					<img style="max-width: 45%;" id="test-reference" src="{% static 'qcforms/test_image_coffee.jpeg' %}">
+				</td>
+				<td>
+					<img style="max-width: 45%;" id="test-preview" src="https://s3.amazonaws.com/shaq-uploads/int-nc-form/test_image_coffee.jpeg">
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<script src="https://code.jquery.com/qunit/qunit-1.23.0.js"></script>
+	<script type="text/javascript">
+		var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}"
+	</script>
+	<script src="{% static 'qcforms/qcforms.js' %}"></script>
+	<script src="{% static 'qcforms/qcforms_tests.js' %}"></script>
+</body>
+</html>
