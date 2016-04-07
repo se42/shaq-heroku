@@ -4,7 +4,7 @@
 		var url_field = document.getElementById("id_issue_image_url");
 		if (url_field.hasAttribute("value")) {
 			document.getElementById("preview").src = url_field.value;
-			get_private_S3_resource("preview");
+			get_private_S3_resource("preview", amz_sign_s3);
 		};
 	};
 })();
@@ -30,5 +30,5 @@
 function update_form_page_elements(url) {
 	document.getElementById("id_issue_image_url").value = url;
 	document.getElementById("preview").src = url;
-	get_private_S3_resource("preview");
+	get_private_S3_resource("preview", amz_sign_s3);
 }

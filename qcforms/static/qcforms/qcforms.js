@@ -1,10 +1,14 @@
-// The .src attribute for element_ID should already be set
-// to the base (i.e. not signed) URL of the resource
-function get_private_S3_resource(element_ID){
+function get_private_S3_resource(element_ID, signature_url){
+	/*
+	The .src attribute for element_ID should already be set to the
+	base (i.e. not signed) URL of the resource.  The variable
+	signature_url is the URL to the server-side view that will produce
+	the signed URL to be sent to S3 and can be defined using a URL
+	template tag on the corresponding HTML page.
+	*/
 	var resource_url = document.getElementById(element_ID).src;
 	var xhr = new XMLHttpRequest();
-	// var amz_sign_s3 must be defined in script on HTML page
-	xhr.open("GET", amz_sign_s3+"?resource_url="+resource_url);
+	xhr.open("GET", signature_url+"?resource_url="+resource_url);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){
