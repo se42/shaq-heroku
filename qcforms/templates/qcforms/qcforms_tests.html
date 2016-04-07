@@ -12,19 +12,22 @@
 	<div id="qunit-fixture"></div>
 
 	<div style="border-style: solid; max-width: 33%; text-align: center;">
-		<h4>THESE SHOULD BE THE SAME</h4>
 		<p>TEST:  Test get_private_S3_resource</p>
 		<table>
 			<tr>
-				<th>REFERENCE</th>
-				<th>TEST IMAGE</th>
+				<th>STATIC REFERENCE</th>
+				<th>TEST PREVIEW</th>
+				<th>UNSIGNED URL</th>
 			</tr>
 			<tr>
 				<td>
-					<img style="max-width: 45%;" id="test-reference" src="{% static 'qcforms/test_image_coffee.jpeg' %}">
+					<img style="max-width: 32%;" id="test-reference" src="{% static 'qcforms/test_image_coffee.jpeg' %}">
 				</td>
 				<td>
-					<img style="max-width: 45%;" id="test-preview" src="https://s3.amazonaws.com/shaq-uploads/int-nc-form/test_image_coffee.jpeg">
+					<img style="max-width: 32%;" id="test-preview" src="https://s3.amazonaws.com/shaq-uploads/int-nc-form/test_image_coffee.jpeg">
+				</td>
+				<td>
+					<img style="max-width: 32%;" id="test-unsigned" src="https://s3.amazonaws.com/shaq-uploads/int-nc-form/test_image_coffee.jpeg">
 				</td>
 			</tr>
 		</table>
