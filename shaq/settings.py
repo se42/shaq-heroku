@@ -26,7 +26,7 @@ except ImportError:
 # SECURITY WARNING: keep the secret key and DB credentials used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 DATABASES = {}
-# DATABASES['default'] =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'] =  dj_database_url.config(conn_max_age=500)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
