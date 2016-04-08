@@ -36,14 +36,11 @@ class IntNCReport(models.Model):
 
 	def save(self, *args, **kwargs):
 		if self.report_number == 'auto':
-			self.gen_report_num()
+			order_date = self.order_number + '-{t:%Y%m%d}'.format(t=datetime.date.today())
+			x = IntNCReport.objects.filter(report_number__contains=order_date)
+			uid = len(x) + 1
+			self.report_number = '{order_date}-{uid}'.format(order_date=order_date, uid=uid)
 		super(IntNCReport, self).save(*args, **kwargs)
 
-
-	def gen_report_num(self):
-		date_tag = '{t:%Y%m%d}'.format(t=datetime.date.today())
-		order_date_pair = self.order_number + '-' + date_tag
-		x = IntNCReport.objects.filter(report_number__contains=order_date_pair)
-		uid = len(x) + 1
-		self.report_number = '{od_pair}-{uid}'.format(od_pair=order_date_pair, uid=uid)
+		
 
