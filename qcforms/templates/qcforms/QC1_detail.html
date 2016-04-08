@@ -8,8 +8,7 @@ Interior NC {{ report.report_number }}
 
 {% block main %}
 <div class="container">
-	<h1>REPORT DETAIL</h1>
-	<p><a class="btn btn-warning" href="#" role="button">Edit Report</a></p>
+	<p><a class="btn btn-block btn-primary" href="{% url 'qcforms:QC1_form' report.id %}" role="button">Edit Report</a></p>
 	{% if report %}
 		<table class="table table-bordered table-hover table-responsive">
 			<tr>
@@ -23,6 +22,10 @@ Interior NC {{ report.report_number }}
 			<tr>
 				<td>REPORT NUMBER</td>
 				<td>{{ report.report_number }}</td>
+			</tr>
+			<tr>
+				<td>ISSUE RESOLVED?</td>
+				<td>{{ report.resolved }}</td>
 			</tr>
 			<tr>
 				<td>ORDER NUMBER</td>
@@ -47,9 +50,9 @@ Interior NC {{ report.report_number }}
 			<tr>
 				<td>ISSUE IMAGE(S)</td>
 				<td>
-					<img id="preview1" src="http://placehold.it/200x200" class="img-responsive">
-					<img id="preview2" src="http://placehold.it/200x200" class="img-responsive">
-					<img id="preview3" src="http://placehold.it/200x200" class="img-responsive">
+					<img id="preview1" src="http://placehold.it/200x200" class="img-responsive"><br>
+					<img id="preview2" src="http://placehold.it/200x200" class="img-responsive"><br>
+					<img id="preview3" src="http://placehold.it/200x200" class="img-responsive"><br>
 				</td>
 			</tr>
 			<tr>

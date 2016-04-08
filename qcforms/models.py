@@ -101,7 +101,7 @@ class IntNCReport(models.Model):
 	additional_info = models.TextField(blank=True)
 	internal_rep = models.CharField(max_length=250)
 	external_rep = models.CharField(max_length=250)
-	resolved = models.BooleanField()
+	resolved = models.BooleanField(default=False)
 
 
 	def __str__(self):
