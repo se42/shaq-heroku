@@ -1,0 +1,148 @@
+{% extends 'shaq/project_base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+Interior NC {{ report.report_number }}
+{% endblock title %}
+
+{% block main %}
+<div class="container">
+	<h1>REPORT DETAIL</h1>
+	<p><a class="btn btn-warning" href="#" role="button">Edit Report</a></p>
+	{% if report %}
+		<table class="table table-bordered table-hover table-responsive">
+			<tr>
+				<td>DOCUMENT NUMBER</td>
+				<td>{{ report.doc_number }}</td>
+			</tr>
+			<tr>
+				<td>DOCUMENT TITLE</td>
+				<td>{{ report.doc_title }}</td>
+			</tr>
+			<tr>
+				<td>REPORT NUMBER</td>
+				<td>{{ report.report_number }}</td>
+			</tr>
+			<tr>
+				<td>ORDER NUMBER</td>
+				<td>{{ report.order_number }}</td>
+			</tr>
+			<tr>
+				<td>BUILD NUMBER</td>
+				<td>{{ report.build_number }}</td>
+			</tr>
+			<tr>
+				<td>VIN</td>
+				<td>{{ report.vin }}</td>
+			</tr>
+			<tr>
+				<td>REPORT DATE:</td>
+				<td>{{ report.report_date }}</td>
+			</tr>
+			<tr>
+				<td>ISSUE SUMMARY</td>
+				<td>{{ report.issue_summary }}</td>
+			</tr>
+			<tr>
+				<td>ISSUE IMAGE(S)</td>
+				<td>
+					<img id="preview1" src="http://placehold.it/200x200" class="img-responsive">
+					<img id="preview2" src="http://placehold.it/200x200" class="img-responsive">
+					<img id="preview3" src="http://placehold.it/200x200" class="img-responsive">
+				</td>
+			</tr>
+			<tr>
+				<td>LOCATION</td>
+				<td>{{ report.location }}</td>
+			</tr>
+			<tr>
+				<td>PART CATEGORY</td>
+				<td>{{ report.part }}</td>
+			</tr>
+			<tr>
+				<td>INSPECTION TYPE</td>
+				<td>{{ report.inspection }}</td>
+			</tr>
+			<tr>
+				<td>VEHICLE</td>
+				<td>{{ report.vehicle }}</td>
+			</tr>
+			<tr>
+				<td>DRIVE</td>
+				<td>{{ report.drive }}</td>
+			</tr>
+			<tr>
+				<td>SHIFT</td>
+				<td>{{ report.shift }}</td>
+			</tr>
+			<tr>
+				<td>CLEAN BUILD</td>
+				<td>{{ report.clean_build }}</td>
+			</tr>
+			<tr>
+				<td>REPAIRED?</td>
+				<td>{{ report.repaired }}</td>
+			</tr>
+			<tr>
+				<td>PART RETURNED?</td>
+				<td>{{ report.part_returned }}</td>
+			</tr>
+			<tr>
+				<td>BI LEVEL</td>
+				<td>{{ report.BI_level }}</td>
+			</tr>
+			<tr>
+				<td>IN PCSQ?</td>
+				<td>{{ report.in_PCSQ }}</td>
+			</tr>
+			<tr>
+				<td>QN NUMBER</td>
+				<td>{{ report.qn_num }}</td>
+			</tr>
+			<tr>
+				<td>ACCEPT RESPONSIBILITY?</td>
+				<td>{{ report.accepts }}</td>
+			</tr>
+			<tr>
+				<td>CONTAINMENT?</td>
+				<td>{{ report.containment }}</td>
+			</tr>
+			<tr>
+				<td>QUALITY ALERT?</td>
+				<td>{{ report.quality_alert }}</td>
+			</tr>
+			<tr>
+				<td>CONTAINMENT ACTIVITY</td>
+				<td>{{ report.containment_activity }}</td>
+			</tr>
+			<tr>
+				<td>ADDITIONAL INFORMATION</td>
+				<td>{{ report.additional_info }}</td>
+			</tr>
+			<tr>
+				<td>INTERNAL REPRESENTATIVE</td>
+				<td>{{ report.internal_rep }}</td>
+			</tr>
+			<tr>
+				<td>EXTERNAL REPRESENTATIVE</td>
+				<td>{{ report.external_rep }}</td>
+			</tr>
+			<tr>
+				<td>REPORTED TO</td>
+				<td>{{ report.reported_to }}</td>
+			</tr>
+		</table>
+	{% else %}
+		<p>No report.</p>
+	{% endif %}
+</div>
+{% endblock main %}
+
+<!-- {% block scripts %}
+<script type="text/javascript">
+var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}"
+</script>
+<script src="{% static 'qcforms/qcforms.js' %}"></script>
+<script src="{% static 'qcforms/qcforms_int_nc_detail.js' %}"></script>
+{% endblock scripts %} -->

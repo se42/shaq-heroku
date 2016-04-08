@@ -1,0 +1,36 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block title %}
+QC-001 Index
+{% endblock title %}
+
+{% block main %}
+<div class="container">
+	<h2>QC-001 Interior NC Report Index</h2>
+	<p><a class="btn btn-success" href="#" role="button">New Report</a></p>
+
+	{% if report_list %}
+		<table class="table table-bordered table-hover table-responsive">
+		<tr class="info">
+			<th>REPORT NUMBER</th>
+			<th>ISSUE SUMMARY</th>
+			<th>QUALITY ALERT</th>
+			<th>CONTAINMENT</th>
+			<th>RESOLVED</th>
+		</tr>
+		{% for report in report_list %}
+			<tr>
+				<td><a href="{% url 'qcforms:QC1_detail' report.id %}">{{ report.report_number }}</a></td>
+				<td>{{ report.issue_summary }}</td>
+				<td>{{ report.quality_alert }}</td>
+				<td>{{ report.containment }}</td>
+				<td>{{ report.resolved }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<p>No reports are available.</p>
+	{% endif %}
+
+</div>
+{% endblock main %}

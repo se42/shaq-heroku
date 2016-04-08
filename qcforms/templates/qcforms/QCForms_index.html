@@ -1,0 +1,29 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block title %}
+QC Forms Index
+{% endblock title %}
+
+{% block main %}
+	<div class="container">
+		<h2>QC Forms Index</h2><br>
+		<div class="row text-center">
+			{% if url_list %}
+			{% for each in url_list %}
+				<div class="col-xs-6 col-sm-4 col-md-3">
+					<div class="thumbnail">
+						<a href="{{ each.view }}">
+						<span class="fa-stack fa-4x">
+							<i class="fa fa-file-text text-primary"></i>
+						</span>
+						<h4 class="service-heading">{{ each.name }}</h4>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+			{% else %}
+				<p class="lead">No reports available</p>
+			{% endif %}
+		</div>
+	</div>
+{% endblock main %}

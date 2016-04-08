@@ -18,6 +18,28 @@ from shaq.utils import active_and_login_required
 from . import models, forms
 
 
+class QCFormsIndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+	"""
+	Index view to display all available QC forms
+	"""
+	template_name = 'qcforms/QCForms_index.html'
+	context_object_name = 'url_list'
+
+	def get_queryset(self):
+		url_list = [
+			{
+				'view': reverse('qcforms:QC1_index'),
+				'name': 'QC-001 Interior Component NC Index',
+			},
+			{
+				'view': reverse('qcforms:int_nc_index'),
+				'name': 'Interior Component NC Index',
+			},
+		]
+		return url_list
+
+	def test_func(self):
+		return self.request.user.is_active
 
 class ReportDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.edit.DeleteView):
 	"""

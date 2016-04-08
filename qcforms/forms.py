@@ -19,3 +19,37 @@ class IntNCReportBasicForm(ModelForm):
 			'issue_image_url': URLInput(attrs={'type': 'hidden',}),
 		}
 
+
+class IntNCReportForm(ModelForm):
+	class Meta:
+		model = models.IntNCReport
+		fields = [
+			'order_number',
+			'build_number',
+			'vin',
+			'report_date',
+			'issue_summary',
+			'location',
+			'part',
+			'inspection',
+			'vehicle',
+			'drive',
+			'shift',
+			'clean_build',
+			'repaired',
+			'part_returned',
+			'BI_level',
+			'in_PCSQ',
+			'qn_num',
+			'accepts',
+			'containment',
+			'quality_alert',
+			'containment_activity',
+			'additional_info',
+			'internal_rep',
+			'external_rep',
+			'reported_to',
+		]
+		widgets = {
+			'report_date': DateInput(attrs={'type': 'date',}),
+		}

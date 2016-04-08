@@ -66,6 +66,8 @@ class IntNCReport(models.Model):
 		('JMITCHELL', 'Jerrica Mitchell'),
 	]
 
+	responsibility = [('YES', 'Yes'), ('NO', 'No'), ('UNK', 'Under Investigation'),]
+
 	BI_levels = [(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9),]
 	
 	doc_number = models.CharField('document number', max_length=250, default='QC-001', editable=False)
@@ -90,13 +92,14 @@ class IntNCReport(models.Model):
 	BI_level = models.CharField(max_length=250, choices=BI_levels, blank=True)
 	in_PCSQ = models.BooleanField()
 	qn_num = models.CharField(max_length=250, blank=True)
-	accepts = models.NullBooleanField()
+	accepts = models.CharField(max_length=250, choices=responsibility, default='UNK')
 	containment = models.BooleanField()
 	quality_alert = models.BooleanField()
 	containment_activity = models.TextField(blank=True)
 	additional_info = models.TextField(blank=True)
 	internal_rep = models.CharField(max_length=250)
 	external_rep = models.CharField(max_length=250)
+	resolved = models.BooleanField()
 
 
 	def __str__(self):
