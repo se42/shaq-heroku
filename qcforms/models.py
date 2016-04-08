@@ -20,55 +20,57 @@ class IntNCReport(models.Model):
 	Model for the QC-001 Interior Component Non-conformance Worksheet
 	"""
 	locations = [
-		('ROADTEST', 'Road Test'),
-		('ANALYSISCENTER', 'Analysis Center'),
-		('QCAUDIT', 'QZ Audit'),
-		('SYNCREON', 'Syncreon'),
-		('REWORK', 'Rework'),
-		('SECTIONAUDIT', 'Section Audit'),
+		('Road Test', 'Road Test'),
+		('Analysis Center', 'Analysis Center'),
+		('QZ Audit', 'QZ Audit'),
+		('Syncreon', 'Syncreon'),
+		('Rework', 'Rework'),
+		('Section Audit', 'Section Audit'),
 		('PVAL', 'PVAL'),
-		('PRUFRIEGEL', 'Prufriegel Audit'),
-		('ASSEMBLY', 'Assembly'),
+		('Prufriegel Audit', 'Prufriegel Audit'),
+		('Assembly', 'Assembly'),
 	]
 
 	parts = [
-		('IP', 'Instrument Panel'),
-		('CC', 'Center Console'),
-		('GB', 'Glove Box'),
-		('CCPK', 'Center Console Parts Kit'),
-		('CLR', 'Cover Leg Room'),
-		('BP', 'Bulk Part'),
-		('DPLF', 'Door Panel Left Front'),
-		('DPLR', 'Door Panel Left Rear'),
-		('DPRF', 'Door Panel Right Front'),
-		('DPRR', 'Door Panel Right Rear'),
+		('Instrument Panel', 'Instrument Panel'),
+		('Center Console', 'Center Console'),
+		('Glove Box', 'Glove Box'),
+		('Center Console Parts Kit', 'Center Console Parts Kit'),
+		('Cover Leg Room', 'Cover Leg Room'),
+		('Bulk Part', 'Bulk Part'),
+		('Door Panel Left Front', 'Door Panel Left Front'),
+		('Door Panel Left Rear', 'Door Panel Left Rear'),
+		('Door Panel Right Front', 'Door Panel Right Front'),
+		('Door Panel Right Rear', 'Door Panel Right Rear'),
 	]
 
 	inspections = [
-		('LUMBEE', '3rd part containment'),
-		('BMW', 'Supplier direct containment (initiated by BMW)'),
-		('DRX', 'Self directed containment (initiated by DRX)'),
+		('3rd part containment (Lumbee)', '3rd part containment (Lumbee)'),
+		('Supplier direct containment (initiated by BMW)', 'Supplier direct containment (initiated by BMW)'),
+		('Self directed containment (initiated by DRX)', 'Self directed containment (initiated by DRX)'),
 	]
 
 	vehicles = [
-		('F15', 'F-15'),
-		('F16', 'F-16'),
-		('F25', 'F-25'),
-		('F26', 'F-26'),
-		('F86', 'F-86'),
+		('F-15', 'F-15'),
+		('F-16', 'F-16'),
+		('F-25', 'F-25'),
+		('F-26', 'F-26'),
+		('F-86', 'F-86'),
 	]
 
-	drives = [('LHD', 'Left Hand Drive'), ('RHD', 'Right Hand Drive'),]
-	shifts = [('A', 'A shift'), ('B', 'B shift'),]
+	drives = [('Left Hand Drive', 'Left Hand Drive'),
+			('Right Hand Drive', 'Right Hand Drive'),]
+	shifts = [('A shift', 'A shift'), ('B shift', 'B shift'),]
 
 	managers = [
-		('DBELL', 'David Bell'),
-		('JMITCHELL', 'Jerrica Mitchell'),
+		('David Bell', 'David Bell'),
+		('Jerrica Mitchell', 'Jerrica Mitchell'),
 	]
 
-	responsibility = [('YES', 'Yes'), ('NO', 'No'), ('UNK', 'Under Investigation'),]
+	responsibility = [('Yes', 'Yes'), ('No', 'No'), ('Under Investigation', 'Under Investigation'),]
 
-	BI_levels = [(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9),]
+	BI_levels = [('1','1'), ('2','2'), ('3','3'), ('4','4'),
+		('5','5'), ('6','6'), ('7','7'), ('8','8'), ('9','9'),]
 	
 	doc_number = models.CharField('document number', max_length=250, default='QC-001', editable=False)
 	doc_title = models.CharField('document title', max_length=250, editable=False,
@@ -92,7 +94,7 @@ class IntNCReport(models.Model):
 	BI_level = models.CharField(max_length=250, choices=BI_levels, blank=True)
 	in_PCSQ = models.BooleanField()
 	qn_num = models.CharField(max_length=250, blank=True)
-	accepts = models.CharField(max_length=250, choices=responsibility, default='UNK')
+	accepts = models.CharField(max_length=250, choices=responsibility, default='Under Investigation')
 	containment = models.BooleanField()
 	quality_alert = models.BooleanField()
 	containment_activity = models.TextField(blank=True)
