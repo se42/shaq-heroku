@@ -73,7 +73,7 @@ class IntNCReport(models.Model):
 			default='Interior Component Non-Conformance Worksheet')
 	report_number = models.CharField(max_length=250, default="auto", editable=False)
 	order_number = models.CharField(max_length=250)
-	vin = models.CharField('VIN')
+	vin = models.CharField(max_length=250, 'VIN')
 	build_number = models.CharField(max_length=250)
 	report_date = models.DateField()
 	issue_summary = models.TextField('non-conformance description')
