@@ -79,7 +79,7 @@ class IntNCReport(models.Model):
 	order_number = models.CharField(max_length=250)
 	vin = models.CharField('VIN', max_length=250)
 	build_number = models.CharField(max_length=250)
-	report_date = models.DateField()
+	report_date = models.DateField(default=datetime.date.today)
 	issue_summary = models.TextField('non-conformance description')
 	location = models.CharField(max_length=250, choices=locations)
 	part = models.CharField(max_length=250, choices=parts)
