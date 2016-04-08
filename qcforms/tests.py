@@ -11,16 +11,17 @@ class IntNCReportTestCase(TestCase):
 		models.IntNCReport.objects.create(order_number='O-123')
 		models.IntNCReport.objects.create(order_number='O-234')
 
-	def test_gen_report_num(self):
+	def test_auto_report_num(self):
 		order_123_pair = 'O-123-' + self.date_tag
 		order_234_pair = 'O-234-' + self.date_tag
 
-		order_123_1 = models.IntNCReport.objects.filter(order_number='O-123')
-		order_234_1 = models.IntNCReport.objects.filter(order_number='O-234')
-		order_123_2 = models.IntNCReport.objects.filter(report_number__contains=order_123_pair)
-		order_234_2 = models.IntNCReport.objects.filter(report_number__contains=order_234_pair)
+		order_123_1 = list(models.IntNCReport.objects.filter(order_number='O-123'))
+		order_234_1 = list(models.IntNCReport.objects.filter(order_number='O-234'))
+		order_123_2 = list(models.IntNCReport.objects.filter(report_number__contains=order_123_pair))
+		order_234_2 = list(models.IntNCReport.objects.filter(report_number__contains=order_234_pair))
 
 		order_123_rep_nums = [x.report_number for x in order_123_1]
+		order_234_rep_nums = [x.report_number for x in order_234_1]
 		order_123_r1 = order_123_pair + '-1'
 		order_123_r2 = order_123_pair + '-2'
 		order_234_r1 = order_234_pair + '-1'
