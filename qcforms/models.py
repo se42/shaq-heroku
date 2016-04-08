@@ -87,7 +87,7 @@ class IntNCReport(models.Model):
 	reported_to = models.CharField(max_length=250, choices=managers)
 	repaired = models.BooleanField()
 	part_returned = models.BooleanField()
-	BI_level = models.CharField(max_length=250, choices=BI_levels)
+	BI_level = models.CharField(max_length=250, choices=BI_levels, blank=True)
 	in_PCSQ = models.BooleanField()
 	qn_num = models.CharField(max_length=250, blank=True)
 	accepts = models.NullBooleanField()
