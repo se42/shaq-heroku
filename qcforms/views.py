@@ -18,21 +18,8 @@ from shaq.utils import active_and_login_required
 from . import models, forms
 
 
-class IndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
-	"""
-	Index view to display all available QC forms.
-	"""
-	template_name = 'qcforms/qcforms_index.html'
-	context_object_name = 'report_list'
 
-	def get_queryset(self):
-		return models.ReportBasic.objects.order_by('document_number')
-
-	def test_func(self):
-		return self.request.user.is_active
-
-
-class IntNCReportDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.edit.DeleteView):
+class ReportDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.edit.DeleteView):
 	"""
 	Generic delete view.  Provide template_name and success_url as
 	arguments in the as_view() function within the url.
@@ -100,6 +87,67 @@ def int_nc_report_form(request, report_id):
 			}
 			return render(request, 'qcforms/int_nc_report_form.html', context)
 
+###############################################
+# QC-001 / complete Interior Component NC views
+
+class QC1IndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+	"""
+	Index view to display all instances of the Interior Component NC Form
+	"""
+	template_name = 'qcforms/QC1_index.html'
+	context_object_name = 'report_list'
+
+	def get_queryset(self):
+		return models.IntNCReport.objects.order_by('report_number')
+
+	def test_func(self):
+		return self.request.user.is_active
+
+
+class QC1DetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
+	"""
+	Detail view to display specific instances of the Interior Component NC Form
+	"""
+	model = models.IntNCReport
+	template_name = 'qcforms/QC1_detail.html'
+	context_object_name = 'report'
+
+	def test_func(self):
+		return self.request.user.is_active
+
+
+@active_and_login_required
+def QC1_report_form(request, report_id):
+	if request.method == 'POST':
+		if report_id == 'new':
+			form = forms.IntNCReportForm(request.POST)
+			report = form.save()
+			return HttpResponseRedirect(reverse('qcforms:QC1_detail', args=(report.id,)))
+		else:
+			report = get_object_or_404(models.IntNCReport, pk=report_id)
+			form = forms.IntNCReportForm(request.POST, instance=report)
+			report = form.save()
+			return HttpResponseRedirect(reverse('qcforms:QC1_detail', args=(report.id,)))
+	else:
+		if report_id == 'new':
+			form = forms.IntNCReportForm()
+			context = {
+				'form': form,
+				'report_id': report_id,
+			}
+			return render(request, 'qcforms/QC1_form.html', context)
+		else:
+			report = get_object_or_404(models.IntNCReport, pk=report_id)
+			form = forms.IntNCReportForm(instance=report)
+			context = {
+				'form': form,
+				'report_id': report_id,
+			}
+			return render(request, 'qcforms/QC1_form.html', context)
+
+
+#########################
+# S3 signature processing
 
 @active_and_login_required
 def amz_sign_s3(request):
