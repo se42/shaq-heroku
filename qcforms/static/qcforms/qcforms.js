@@ -1,3 +1,35 @@
+/*
+COMMON SELF-STARTING FUNCTIONS
+*/
+
+// <i class="fa fa-check-circle"></i>
+
+// REPLACE display-bool-icon CLASS ELEMENTS WITH BOOLEAN ICON
+(function () {
+	var myBools = document.getElementsByClassName("display-bool-icon");
+	for (var each = myBools.length - 1; i >= 0; i--) {
+		if (myBools[i].innerHTML == "True") {
+			var iconElement = document.createElement("i");
+			iconElement.class = "fa fa-check-circle";
+			myBools[i].innerHTML = "";
+			myBools[i].appendChild(iconElement);
+		} else if (myBools[i].innerHTML == "False") {
+			var iconElement = document.createElement("i");
+			iconElement.class = "fa fa-times-circle";
+			myBools[i].innerHTML = "";
+			myBools[i].appendChild(iconElement);
+		}
+		else {}
+	}
+})();
+
+
+
+
+/*
+AMAZON S3 FUNCTIONS
+*/
+
 function get_private_S3_resource(element_ID, signature_url){
 	/*
 	The .src attribute for element_ID should already be set to the

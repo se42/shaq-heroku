@@ -1,4 +1,5 @@
 {% extends 'shaq/project_base.html' %}
+{% load staticfiles %}
 
 {% block title %}
 QC-001 Index
@@ -22,9 +23,9 @@ QC-001 Index
 			<tr>
 				<td><a href="{% url 'qcforms:QC1_detail' report.id %}">{{ report.report_number }}</a></td>
 				<td>{{ report.issue_summary }}</td>
-				<td>{{ report.quality_alert }}</td>
-				<td>{{ report.containment }}</td>
-				<td>{{ report.resolved }}</td>
+				<td class="display-bool-icon">{{ report.quality_alert }}</td>
+				<td class="display-bool-icon">{{ report.containment }}</td>
+				<td class="display-bool-icon">{{ report.resolved }}</td>
 			</tr>
 		{% endfor %}
 		</table>
@@ -34,3 +35,7 @@ QC-001 Index
 
 </div>
 {% endblock main %}
+
+{% block scripts %}
+<script src="{% static 'qcforms/qcforms.js' %}"></script>
+{% endblock scripts %}
