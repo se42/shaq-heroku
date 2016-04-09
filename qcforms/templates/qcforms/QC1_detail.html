@@ -1,6 +1,9 @@
 {% extends 'shaq/project_base.html' %}
 
+{% block head %}
 {% load staticfiles %}
+<link href="{% static 'qcforms/qcforms.css' %}" rel="stylesheet">
+{% endblock head %}
 
 {% block title %}
 Interior NC {{ report.report_number }}
@@ -25,7 +28,7 @@ Interior NC {{ report.report_number }}
 			</tr>
 			<tr>
 				<td>ISSUE RESOLVED?</td>
-				<td>{{ report.resolved }}</td>
+				<td class="bool-go-no-go">{{ report.resolved }}</td>
 			</tr>
 			<tr>
 				<td>ORDER NUMBER</td>
@@ -142,10 +145,7 @@ Interior NC {{ report.report_number }}
 </div>
 {% endblock main %}
 
-<!-- {% block scripts %}
-<script type="text/javascript">
-var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}"
-</script>
+{% block scripts %}
 <script src="{% static 'qcforms/qcforms.js' %}"></script>
-<script src="{% static 'qcforms/qcforms_int_nc_detail.js' %}"></script>
-{% endblock scripts %} -->
+{% endblock scripts %}
+

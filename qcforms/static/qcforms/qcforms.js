@@ -6,16 +6,42 @@ COMMON SELF-STARTING FUNCTIONS
 
 // REPLACE display-bool-icon CLASS ELEMENTS WITH BOOLEAN ICON
 (function () {
-	var myBools = document.getElementsByClassName("display-bool-icon");
-	for (var each = myBools.length - 1; i >= 0; i--) {
+	var myBools = document.getElementsByClassName("bool-go-no-go");
+	for (var i = myBools.length - 1; i >= 0; i--) {
 		if (myBools[i].innerHTML == "True") {
 			var iconElement = document.createElement("i");
-			iconElement.class = "fa fa-check-circle";
+			var classAtt = document.createAttribute("class");
+			classAtt.value = "fa fa-check-circle fa-3x text-success";
+			iconElement.setAttributeNode(classAtt);
 			myBools[i].innerHTML = "";
 			myBools[i].appendChild(iconElement);
 		} else if (myBools[i].innerHTML == "False") {
 			var iconElement = document.createElement("i");
-			iconElement.class = "fa fa-times-circle";
+			var classAtt = document.createAttribute("class");
+			classAtt.value = "fa fa-times-circle fa-3x text-danger";
+			iconElement.setAttributeNode(classAtt);
+			myBools[i].innerHTML = "";
+			myBools[i].appendChild(iconElement);
+		}
+		else {}
+	}
+})();
+
+(function () {
+	var myBools = document.getElementsByClassName("bool-exclaim-true");
+	for (var i = myBools.length - 1; i >= 0; i--) {
+		if (myBools[i].innerHTML == "True") {
+			var iconElement = document.createElement("i");
+			var classAtt = document.createAttribute("class");
+			classAtt.value = "fa fa-exclamation-triangle fa-3x text-danger";
+			iconElement.setAttributeNode(classAtt);
+			myBools[i].innerHTML = "";
+			myBools[i].appendChild(iconElement);
+		} else if (myBools[i].innerHTML == "False") {
+			var iconElement = document.createElement("i");
+			var classAtt = document.createAttribute("class");
+			classAtt.value = "fa fa-minus fa-3x";
+			iconElement.setAttributeNode(classAtt);
 			myBools[i].innerHTML = "";
 			myBools[i].appendChild(iconElement);
 		}
