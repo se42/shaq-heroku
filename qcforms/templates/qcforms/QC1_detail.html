@@ -53,9 +53,9 @@ Interior NC {{ report.report_number }}
 			<tr>
 				<td>ISSUE IMAGE(S)</td>
 				<td>
-					<img id="preview1" src="http://placehold.it/200x200" class="img-responsive"><br>
-					<img id="preview2" src="http://placehold.it/200x200" class="img-responsive"><br>
-					<img id="preview3" src="http://placehold.it/200x200" class="img-responsive"><br>
+					{% for image in report.intncimage_set.all %}
+						<img src="{{ image.image_url }}">
+					{% endfor %}
 				</td>
 			</tr>
 			<tr>

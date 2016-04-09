@@ -2,9 +2,7 @@
 COMMON SELF-STARTING FUNCTIONS
 */
 
-// <i class="fa fa-check-circle"></i>
-
-// REPLACE display-bool-icon CLASS ELEMENTS WITH BOOLEAN ICON
+// REPLACE bool-x CLASS ELEMENTS WITH BOOLEAN ICON
 (function () {
 	var myBools = document.getElementsByClassName("bool-go-no-go");
 	for (var i = myBools.length - 1; i >= 0; i--) {

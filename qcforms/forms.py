@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, inlineformset_factory
 from django.forms.widgets import DateInput, URLInput
 
 from . import models
@@ -54,3 +54,9 @@ class IntNCReportForm(ModelForm):
 		widgets = {
 			'report_date': DateInput(attrs={'type': 'date',}),
 		}
+
+IntNCImageInlineFormset = inlineformset_factory(
+	models.IntNCReport,
+	models.IntNCImage,
+	fields=('image_url',)
+)

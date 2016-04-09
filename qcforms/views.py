@@ -137,32 +137,42 @@ class QC1DetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView)
 	def test_func(self):
 		return self.request.user.is_active
 
-
 @active_and_login_required
 def QC1_report_form(request, report_id):
 	if request.method == 'POST':
 		if report_id == 'new':
 			form = forms.IntNCReportForm(request.POST)
-			report = form.save()
+			if form.is_valid():
+				report = form.save()
+				formset = forms.IntNCImageInlineFormset(request.POST, instance=report)
+				if formset.is_valid():
+					formset.save()
 			return HttpResponseRedirect(reverse('qcforms:QC1_detail', args=(report.id,)))
 		else:
 			report = get_object_or_404(models.IntNCReport, pk=report_id)
 			form = forms.IntNCReportForm(request.POST, instance=report)
-			report = form.save()
+			formset = forms.IntNCImageInlineFormset(request.POST, instance=report)
+			if form.is_valid() and formset.is_valid():
+				report = form.save()
+				formset.save()
 			return HttpResponseRedirect(reverse('qcforms:QC1_detail', args=(report.id,)))
 	else:
 		if report_id == 'new':
 			form = forms.IntNCReportForm()
+			formset = forms.IntNCImageInlineFormset()
 			context = {
 				'form': form,
+				'formset': formset,
 				'report_id': report_id,
 			}
 			return render(request, 'qcforms/QC1_form.html', context)
 		else:
 			report = get_object_or_404(models.IntNCReport, pk=report_id)
 			form = forms.IntNCReportForm(instance=report)
+			formset = forms.IntNCImageInlineFormset(instance=report)
 			context = {
 				'form': form,
+				'formset': formset,
 				'report_id': report_id,
 			}
 			return render(request, 'qcforms/QC1_form.html', context)
