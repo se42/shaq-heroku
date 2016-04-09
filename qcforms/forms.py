@@ -49,6 +49,7 @@ class IntNCReportForm(ModelForm):
 			'internal_rep',
 			'external_rep',
 			'reported_to',
+			'resolved',
 		]
 		widgets = {
 			'report_date': DateInput(attrs={'type': 'date',}),
