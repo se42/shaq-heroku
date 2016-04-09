@@ -54,7 +54,7 @@ Interior NC {{ report.report_number }}
 				<td>ISSUE IMAGE(S)</td>
 				<td>
 					{% for image in report.intncimage_set.all %}
-						<img src="{{ image.image_url }}">
+						<img src="{{ image.image_url }}" class="img-responsive img-thumbnail center-block" style="margin: 5px;">
 					{% endfor %}
 				</td>
 			</tr>
