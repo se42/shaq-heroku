@@ -14,7 +14,9 @@
 	<form action="{% url 'qcforms:QC1_form' report_id %}" method="post" class="form">
 			{% csrf_token %}
 			{% bootstrap_form form %}
+			<div id="imageInputs">
 			{% bootstrap_formset formset %}
+			</div>
 			{% buttons submit='Submit' reset='Reset' %}
 			{% endbuttons %}
 	</form>
