@@ -22,7 +22,7 @@
 			<div id="image-preview-panel">
 				{% for image_form in formset %}
 					<div class="col-xs-12 col-sm-6 col-md-4">
-						<input id="file_input_{{ image_form.id.value }}" type="file"/>
+						<input id="file_input_{{ image_form.id.value }}" class="s3_file_inputs" type="file"/>
 						<br>
 						<img class="img-responsive" id="preview_{{ image_form.id.value }}" src="{{ image_form.image_url.value }}">
 					</div>

@@ -42,8 +42,10 @@
 		// get_s3_resource on the img element with amz_sign_s3 url
 		var imagePanel = document.getElementById("image-preview-panel").children;
 		for (var i = imagePanel.length - 1; i >= 0; i--) {
-			var imgElement = imagePanel[i].getElementsByTagName("img");
-			get_s3_resource(imgElement[0], amz_sign_s3);
+			var imgElement = imagePanel[i].getElementsByTagName("img")[0];
+			get_s3_resource(imgElement, amz_sign_s3);
+			var imgInput = imagePanel[i].getElementsByTagName("input")[0];
+			imgInput.onchange = startS3Upload(imgInput.id);
 		}
 	};
 
@@ -51,10 +53,15 @@
 		// Code to create a new image select thumbnail/preview element
 		// as well as a new hidden input for the actual image_url input.
 		// Don't forget to update the TOTAL_FORMS count too.
+		// Also, this shouldn't work/should be hidden if there is an undefined image input/url
 		// 
 		// 1 - create the hidden url input fields
 		// 2 - run the standard create_image_input_preview function
 	};
 })();
 
+
+function startS3Upload(inputID) {
+	alert("S3 upload initiated");
+}
 
