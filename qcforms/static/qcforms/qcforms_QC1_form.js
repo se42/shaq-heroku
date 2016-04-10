@@ -69,9 +69,10 @@ $(document).ready(function(){
 	}
 	var image_inputs = $(".image-inputs");
 	for (var i = 0; i < image_inputs.length; i++) {
+		console.log("Trying to set onchange for: " + image_inputs[i].id);
 		image_inputs[i].onchange = startS3Upload(image_inputs[i]);
 	}
-})
+});
 
 
 function startS3Upload(input_element) {
