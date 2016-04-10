@@ -86,6 +86,7 @@ function get_s3_resource(element, signature_view_url) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", signature_view_url+"?resource_url="+resource_url);
 	xhr.onreadystatechange = function() {
+		console.log("XHR READYSTATE FUNCTION LAUNCED");
 		if(xhr.readyState === 4) {
 			console.log("readyState REACHED 4");
 			if(xhr.status === 200) {
