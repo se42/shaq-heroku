@@ -83,7 +83,7 @@ function get_private_S3_resource(element_ID, signature_url){
 function get_s3_resource(element, signature_view_url) {
 	var resource_url = element.src;
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", signature_view_url+"?resource_url="+resource_url)
+	xhr.open("GET", signature_view_url+"?resource_url="+resource_url);
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === 4) {
 			if(xhr.status === 200) {
@@ -91,7 +91,7 @@ function get_s3_resource(element, signature_view_url) {
 				element.src = response.signed_request;
 			}
 			else {
-				alert("Could not get signed URL.")
+				alert("Could not get signed URL.");
 			}
 		}
 	};
