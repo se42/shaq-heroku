@@ -79,6 +79,24 @@ function get_private_S3_resource(element_ID, signature_url){
 	xhr.send();
 }
 
+// Based on get_private_s3_resource but will take an element (better for iterating)
+function get_s3_resource(element, signature_view_url) {
+	var resource_url = element.src;
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", signature_view_url+"?resource_url="+resource_url)
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState === 4) {
+			if(xhr.status === 200) {
+				var response = JSON.parse(xhr.responseText);
+				element.src = response.signed_request;
+			}
+			else {
+				alert("Could not get signed URL.")
+			}
+		}
+	};
+}
+
 
 // Core function to PUT a file into a folder within the project's S3 bucket
 // next_func takes URL as an argument and is the function to execute when the process is complete

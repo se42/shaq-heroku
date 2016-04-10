@@ -270,8 +270,11 @@ def _amz_signed_request_json(url, expires, signature):
 		'url': url,
 	})
 
+
+#########################
+# Views to render Javascript testing HTML pages
 @active_and_login_required
 def qcformsjstesting(request):
-	return render(request, 'qcforms/qcforms_tests.html')
+	return render(request, 'qcforms/test_templates/qcforms_tests.html')
 
 

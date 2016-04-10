@@ -54,7 +54,7 @@ Interior NC {{ report.report_number }}
 				<td>ISSUE IMAGE(S)</td>
 				<td>
 					{% for image in report.intncimage_set.all %}
-						<img src="{{ image.image_url }}" class="img-responsive img-thumbnail center-block" style="margin: 5px;">
+						<img src="{{ image.image_url }}" class="img-responsive img-thumbnail center-block image-previews">
 					{% endfor %}
 				</td>
 			</tr>
@@ -146,6 +146,10 @@ Interior NC {{ report.report_number }}
 {% endblock main %}
 
 {% block scripts %}
+<script type="text/javascript">
+var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}";
+</script>
 <script src="{% static 'qcforms/qcforms.js' %}"></script>
+<script src="{% static 'qcforms/qcforms_QC1_detail.js' %}"></script>
 {% endblock scripts %}
 
