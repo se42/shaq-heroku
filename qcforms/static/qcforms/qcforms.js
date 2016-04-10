@@ -81,12 +81,15 @@ function get_private_S3_resource(element_ID, signature_url){
 
 // Based on get_private_s3_resource but will take an element (better for iterating)
 function get_s3_resource(element, signature_view_url) {
+	console.log("get_s3_resource WAS CALLED");
 	var resource_url = element.src;
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", signature_view_url+"?resource_url="+resource_url);
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === 4) {
+			console.log("readyState REACHED 4");
 			if(xhr.status === 200) {
+				console.log("STATUS REACHED 200");
 				var response = JSON.parse(xhr.responseText);
 				element.src = response.signed_request;
 			}
