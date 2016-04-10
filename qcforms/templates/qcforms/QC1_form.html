@@ -11,12 +11,36 @@
 {% block main %}
 <div class="container">
 	<h1>QC-001 Interior NC Report Form</h1>
+
+	<!-- INPUTS FOR DIRECT TO S3 IMAGE UPLOADS -->
+	<div class="form-group">
+		<h3>Issue Images</h3>
+		<p>NOTE:  Images are automatically and instantly stored in S3 when selected.</p>
+		<p><button id="add-image-button" type="button" class="btn btn-primary">Add Image</button></p>
+
+		<div class="row bootstrap3-multi-input">
+			<div id="image-preview-panel">
+				{% for image_form in formset %}
+					<div class="col-xs-12 col-sm-6 col-md-4">
+						<input id="file_input_{{ image_form.id.value }}" type="file"/>
+						<br>
+						<img class="img-responsive" id="preview_{{ image_form.id.value }}" src="{{ image_form.image_url.value }}">
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+
+	<h3>General Information</h3>
 	<form action="{% url 'qcforms:QC1_form' report_id %}" method="post" class="form">
 			{% csrf_token %}
 			{% bootstrap_form form %}
+
 			<div id="imageInputs">
 			{% bootstrap_formset formset %}
 			</div>
+			
 			{% buttons submit='Submit' reset='Reset' %}
 			{% endbuttons %}
 	</form>
@@ -24,10 +48,10 @@
 </div>
 {% endblock main %}
 
-<!-- {% block scripts %}
+{% block scripts %}
 <script type="text/javascript">
 var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}"
 </script>
 <script src="{% static 'qcforms/qcforms.js' %}"></script>
-<script src="{% static 'qcforms/qcforms_int_nc_form.js' %}"></script>
-{% endblock scripts %} -->
+<script src="{% static 'qcforms/qcforms_QC1_form.js' %}"></script>
+{% endblock scripts %}
