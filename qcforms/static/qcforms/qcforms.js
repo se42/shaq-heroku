@@ -99,6 +99,7 @@ function get_s3_resource(element, signature_view_url) {
 			}
 		}
 	};
+	xhr.send();
 }
 
 
