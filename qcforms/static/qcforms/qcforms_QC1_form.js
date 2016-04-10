@@ -62,21 +62,31 @@
 // 	};
 // })();
 
-
-function startS3Upload() {
-	alert("S3 upload initiated using jQuery");
-}
-
 $(document).ready(function(){
 	var image_previews = $(".image-previews");
 	for (var i = 0; i < image_previews.length; i++) {
-		get_s3_resource(image_previews[i]);
+		get_s3_resource(image_previews[i], amz_sign_s3);
 	}
 	var image_inputs = $(".image-inputs");
 	for (var i = 0; i < image_inputs.length; i++) {
-		image_inputs[i].onchange = startS3Upload();
+		image_inputs[i].onchange = startS3Upload(image_inputs[i]);
 	}
 })
 
 
+function startS3Upload(input_element) {
+	var files = input_element.files;
+	var file = files[0];
+	if(file == null){
+		alert("No file selected.");
+	}
+	else{
+		var folder = "int-nc-form";
+		upload_private_S3_resource(file, folder, function_to_update_page_elements);
+	}
+}
+
+function function_to_update_page_elements(url) {
+	alert("Unsigned URL: " + url);
+}
 
