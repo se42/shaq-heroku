@@ -36,32 +36,47 @@
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-(function() {
-	document.body.onload = function() {
-		// for each img element in the image-preview-panel div, call
-		// get_s3_resource on the img element with amz_sign_s3 url
-		var imagePanel = document.getElementById("image-preview-panel").children;
-		for (var i = imagePanel.length - 1; i >= 0; i--) {
-			var imgElement = imagePanel[i].getElementsByTagName("img")[0];
-			get_s3_resource(imgElement, amz_sign_s3);
-			var imgInput = imagePanel[i].getElementsByTagName("input")[0];
-			imgInput.onchange = startS3Upload(imgInput.id);
-		}
-	};
+// (function() {
+// 	document.body.onload = function() {
+// 		// for each img element in the image-preview-panel div, call
+// 		// get_s3_resource on the img element with amz_sign_s3 url
+// 		var imagePanels = document.getElementById("image-preview-panel").children;
+// 		for (var i = imagePanels.length - 1; i >= 0; i--) {
+// 			var imgElement = imagePanels[i].getElementsByTagName("img")[0];
+// 			get_s3_resource(imgElement, amz_sign_s3);
+// 			var imgInput = imagePanels[i].getElementsByTagName("input")[0];
+// 			imgInput.onchange = startS3Upload(imgInput.id);
+// 		}
+// 	};
+// })();
 
-	document.getElementById("add-image-button").onclick = function() {
-		// Code to create a new image select thumbnail/preview element
-		// as well as a new hidden input for the actual image_url input.
-		// Don't forget to update the TOTAL_FORMS count too.
-		// Also, this shouldn't work/should be hidden if there is an undefined image input/url
-		// 
-		// 1 - create the hidden url input fields
-		// 2 - run the standard create_image_input_preview function
-	};
-})();
+// (function() {
+// 	document.getElementById("add-image-button").onclick = function() {
+// 		// Code to create a new image select thumbnail/preview element
+// 		// as well as a new hidden input for the actual image_url input.
+// 		// Don't forget to update the TOTAL_FORMS count too.
+// 		// Also, this shouldn't work/should be hidden if there is an undefined image input/url
+// 		// 
+// 		// 1 - create the hidden url input fields
+// 		// 2 - run the standard create_image_input_preview function
+// 	};
+// })();
 
 
-function startS3Upload(inputID) {
-	alert("S3 upload initiated");
+function startS3Upload() {
+	alert("S3 upload initiated using jQuery");
 }
+
+$(document).ready(function(){
+	var image_previews = $(".image-previews");
+	for (var i = 0; i < image_previews.length; i++) {
+		get_s3_resource(image_previews[i]);
+	}
+	var image_inputs = $(".image-inputs");
+	for (var i = 0; i < image_inputs.length; i++) {
+		image_inputs[i].onchange = startS3Upload();
+	}
+})
+
+
 
