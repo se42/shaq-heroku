@@ -16,17 +16,17 @@
 	<form action="{% url 'qcforms:QC1_form' report_id %}" method="post" class="form">
 		{% csrf_token %}
 
-		<div id="imageUrlFormset" class="row">
+		<div class="row">
 		{% for image_form in formset %}
-			<div id="image-col-{{ image_form.id.value }}" class="image-col col-xs-12 col-sm-6 col-md-4">
-				<input id="file-input-{{ image_form.id.value }}" class="image-inputs" type="file"/>
-				<img id="preview-image-{{ image_form.id.value }}" class="img-responsive img-thumbnail image-previews" src="{{ image_form.image_url.value }}">
+			<div class="image-col col-xs-12 col-sm-6 col-md-4">
+				<input class="image-input" type="file"/>
+				<img class="img-responsive img-thumbnail image-preview" src="{{ image_form.image_url.value }}">
 				{% bootstrap_form image_form %}
 			</div>
 		{% endfor %}
 		</div>
 
-		<div id="reportForm" class="row">
+		<div class="row">
 		{% bootstrap_form form %}
 		
 		{% buttons submit='Submit' reset='Reset' %}
