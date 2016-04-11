@@ -75,7 +75,7 @@
 (function() {
 	var imageInputs = $(".image-inputs");
 	for (var i = 0; i < imageInputs.length; i++) {
-		imageInputs[i].addEventListener("change", startS3Upload(imageInputs[i]));
+		imageInputs[i].addEventListener("change", function() {startS3Upload(imageInputs[i];)});
 	}
 })();
 
