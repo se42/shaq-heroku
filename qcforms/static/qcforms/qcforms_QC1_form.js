@@ -23,9 +23,14 @@ $(".image-col").each(function() {
 
 
 $("#add-image-button").click(function() {
-	alert("Button to add a new image-col div!");
+	var totalForms = document.getElementById("id_intncimage_set-TOTAL_FORMS");
+	var x = totalForms.value;
+	totalForms.value++;
+	$("#image-panel").append("<div class=\"image-col col-xs-12 col-sm-6 col-md-4\">"
+				+ "<input class=\"image-input\" type=\"file\"/>"
+				+ "<img class=\"image-preview img-responsive img-thumbnail\" "
+				+ "src=\"http://placehold.it/200x200\"></div>");
 	/*
-	1 - formset div needs an id
 	2 - add new image-col div
 	3 - add new image-input file input
 	4 - add new image-preview img element
