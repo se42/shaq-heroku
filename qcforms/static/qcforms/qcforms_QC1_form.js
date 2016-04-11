@@ -62,30 +62,37 @@
 // 	};
 // })();
 
+$(document).ready(function() {
+	$(".image-previews").each(get_s3_resource($(this), amz_sign_s3));
+});
 
-(function() {
-	document.body.onload = function() {
-		var imageInputGroups = $(".image-input-group");
-		for (var i = 0; i < imageInputGroups.length; i++) {
-			var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
-			get_s3_resource(previewImage, amz_sign_s3);
-		}
-	};
-})();
 
-(function() {
-	var imageInputGroups = $(".image-input-group");
-	for (var i = 0; i < imageInputGroups.length; i++) {
-		var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
-		var imageInput = imageInputGroups[i].getElementsByTagName("input")[0];
-		imageInput.addEventListener("change", function() {
-			startS3Upload(imageInput.id, function(url) {
-				previewImage.src = url;
-				get_s3_resource(previewImage, amz_sign_s3);
-			});
-		});
-	}
-})();
+
+// (function() {
+// 	document.body.onload = function() {
+// 		var imageInputGroups = $(".image-input-group");
+// 		for (var i = 0; i < imageInputGroups.length; i++) {
+// 			var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
+// 			get_s3_resource(previewImage, amz_sign_s3);
+// 		}
+// 	};
+// })();
+
+// (function() {
+// 	var imageInputGroups = $(".image-input-group");
+// 	for (var i = 0; i < imageInputGroups.length; i++) {
+// 		var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
+// 		var imageInput = imageInputGroups[i].getElementsByTagName("input")[0];
+// 		imageInput.addEventListener("change", function() {
+// 			var files = this.files;
+// 			var file = files[0];
+// 			var folder = "int-nc-form";
+// 			if(file != null) {
+// 				upload_private_S3_resource(file, folder, );
+// 			}
+// 		});
+// 	}
+// })();
 
 // (function() {
 // 	document.body.onload = function() {
@@ -107,16 +114,5 @@
 // 		});
 // 	}
 // })();
-
-
-function startS3Upload(imageInputID, nextFunction) {
-	var inputElement = document.getElementById(imageInputID);
-	var files = inputElement.files;
-	var file = files[0];
-	if(file != null){
-		var folder = "int-nc-form";
-		upload_private_S3_resource(file, folder, nextFunction);
-	}
-}
 
 
