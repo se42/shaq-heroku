@@ -16,6 +16,8 @@
 	<form action="{% url 'qcforms:QC1_form' report_id %}" method="post" class="form">
 		{% csrf_token %}
 
+		{{ formset.management_form }}
+
 		<div class="row">
 		{% for image_form in formset %}
 			<div class="image-col col-xs-12 col-sm-6 col-md-4">
