@@ -65,33 +65,48 @@
 
 (function() {
 	document.body.onload = function() {
-		var imagePreviews = $(".image-previews");
-		for (var i = 0; i < imagePreviews.length; i++) {
-			get_s3_resource(imagePreviews[i], amz_sign_s3);
+		var imageInputGroups = $(".image-input-group");
+		for (var i = 0; i < imageInputGroups.length; i++) {
+			var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
+			var imageInput = imageInputGroups[i].getElementsByTagName("input")[0];
+			get_s3_resource(previewImage, amz_sign_s3);
+			imageInput.addEventListener("change", function() {
+				startS3Upload(imageInput.id, get_s3_resource(previewImage, amz_sign_s3));
+			});
 		}
 	};
 })();
 
-(function() {
-	var imageInputs = $(".image-inputs");
-	for (var i = 0; i < imageInputs.length; i++) {
-		var imageInputID = imageInputs[i].id;
-		imageInputs[i].addEventListener("change", function() {startS3Upload(imageInputID);});
-	}
-})();
+// (function() {
+// 	document.body.onload = function() {
+// 		var imagePreviews = $(".image-previews");
+// 		for (var i = 0; i < imagePreviews.length; i++) {
+// 			get_s3_resource(imagePreviews[i], amz_sign_s3);
+// 		}
+// 	};
+// })();
+
+// (function() {
+// 	var imageInputs = $(".image-inputs");
+// 	for (var i = 0; i < imageInputs.length; i++) {
+// 		var imageInputID = imageInputs[i].id;
+// 		imageInputs[i].addEventListener("change", function() {
+// 			startS3Upload(imageInputID, function() {
+// 				get_s3_resource("the_associated_preview");
+// 			});
+// 		});
+// 	}
+// })();
 
 
-function startS3Upload(imageInputID) {
+function startS3Upload(imageInputID, nextFunction) {
 	var inputElement = document.getElementById(imageInputID);
 	var files = inputElement.files;
 	var file = files[0];
 	if(file != null){
 		var folder = "int-nc-form";
-		upload_private_S3_resource(file, folder, function_to_update_page_elements);
+		upload_private_S3_resource(file, folder, nextFunction);
 	}
 }
 
-function function_to_update_page_elements(url) {
-	alert("Unsigned URL: " + url);
-}
 
