@@ -10,7 +10,6 @@ $(".image-inputs").change(function() {
 	var previewElement = $(this).next()[0];
 	if (file != null) {
 		upload_private_S3_resource(file, folder, function(url) {
-			alert("The url is: " + url);
 			previewElement.src = url;
 			get_s3_resource(previewElement, amz_sign_s3);
 		});

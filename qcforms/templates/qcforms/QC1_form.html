@@ -16,12 +16,12 @@
 	<div class="form-group">
 		<h3>Issue Images</h3>
 		<p>NOTE:  Images are automatically and instantly stored in S3 when selected.</p>
-		<p><button id="add-image-button" type="button" class="btn btn-primary">Add Image</button></p>
+		<p><button id="add-image-button" type="button" class="btn btn-success">Add Image</button></p>
 
 		<div class="row bootstrap3-multi-input">
 			{% for image_form in formset %}
-				<div class="col-xs-12 col-sm-6 col-md-4 image-input-group">
-					<input id="file_input_{{ image_form.id.value }}" class="image-inputs" type="file"/>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<input id="file_input_{{ image_form.id.value }}" class="btn btn-primary image-inputs" type="file"/>
 					<img id="preview_{{ image_form.id.value }}" class="img-responsive img-thumbnail image-previews" src="{{ image_form.image_url.value }}">
 				</div>
 			{% endfor %}
