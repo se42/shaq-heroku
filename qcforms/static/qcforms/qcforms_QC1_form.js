@@ -62,17 +62,22 @@
 // 	};
 // })();
 
-$(document).ready(function(){
-	var image_previews = $(".image-previews");
-	for (var i = 0; i < image_previews.length; i++) {
-		get_s3_resource(image_previews[i], amz_sign_s3);
+
+(function() {
+	document.body.onload = function() {
+		var imagePreviews = $(".image-previews");
+		for (var i = 0; i < imagePreviews.length; i++) {
+			get_s3_resource(imagePreviews[i], amz_sign_s3);
+		}
+	};
+})();
+
+(function() {
+	var imageInputs = $(".image-inputs");
+	for (var i = 0; i < imageInputs.length; i++) {
+		imageInputs[i].onchange = startS3Upload(imageInputs[i]);
 	}
-	var image_inputs = $(".image-inputs");
-	for (var i = 0; i < image_inputs.length; i++) {
-		console.log("Trying to set onchange for: " + image_inputs[i].id);
-		image_inputs[i].onchange = startS3Upload(image_inputs[i]);
-	}
-});
+})();
 
 
 function startS3Upload(input_element) {
