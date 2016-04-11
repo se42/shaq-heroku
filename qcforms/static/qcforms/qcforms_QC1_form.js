@@ -71,7 +71,9 @@
 			var imageInput = imageInputGroups[i].getElementsByTagName("input")[0];
 			get_s3_resource(previewImage, amz_sign_s3);
 			imageInput.addEventListener("change", function() {
-				startS3Upload(imageInput.id, get_s3_resource(previewImage, amz_sign_s3));
+				startS3Upload(imageInput.id, function() {
+					get_s3_resource(previewImage, amz_sign_s3);
+				});
 			});
 		}
 	};
