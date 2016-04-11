@@ -36,31 +36,6 @@
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-// (function() {
-// 	document.body.onload = function() {
-// 		// for each img element in the image-preview-panel div, call
-// 		// get_s3_resource on the img element with amz_sign_s3 url
-// 		var imagePanels = document.getElementById("image-preview-panel").children;
-// 		for (var i = imagePanels.length - 1; i >= 0; i--) {
-// 			var imgElement = imagePanels[i].getElementsByTagName("img")[0];
-// 			get_s3_resource(imgElement, amz_sign_s3);
-// 			var imgInput = imagePanels[i].getElementsByTagName("input")[0];
-// 			imgInput.onchange = startS3Upload(imgInput.id);
-// 		}
-// 	};
-// })();
-
-// (function() {
-// 	document.getElementById("add-image-button").onclick = function() {
-// 		// Code to create a new image select thumbnail/preview element
-// 		// as well as a new hidden input for the actual image_url input.
-// 		// Don't forget to update the TOTAL_FORMS count too.
-// 		// Also, this shouldn't work/should be hidden if there is an undefined image input/url
-// 		// 
-// 		// 1 - create the hidden url input fields
-// 		// 2 - run the standard create_image_input_preview function
-// 	};
-// })();
 
 $(document).ready(function() {
 	$(".image-previews").each(function() {
@@ -72,55 +47,12 @@ $(".image-inputs").change(function() {
 	var file = this.files[0];
 	var folder = "int-nc-form";
 	if (file != null) {
-		upload_private_S3_resource_2(file, folder);
+		var url = upload_private_S3_resource_2(file, folder);
+		alert("RETURNED URL: " + url);
 	}
 });
 
-// (function() {
-// 	document.body.onload = function() {
-// 		var imageInputGroups = $(".image-input-group");
-// 		for (var i = 0; i < imageInputGroups.length; i++) {
-// 			var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
-// 			get_s3_resource(previewImage, amz_sign_s3);
-// 		}
-// 	};
-// })();
 
-// (function() {
-// 	var imageInputGroups = $(".image-input-group");
-// 	for (var i = 0; i < imageInputGroups.length; i++) {
-// 		var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
-// 		var imageInput = imageInputGroups[i].getElementsByTagName("input")[0];
-// 		imageInput.addEventListener("change", function() {
-// 			var files = this.files;
-// 			var file = files[0];
-// 			var folder = "int-nc-form";
-// 			if(file != null) {
-// 				upload_private_S3_resource(file, folder, );
-// 			}
-// 		});
-// 	}
-// })();
 
-// (function() {
-// 	document.body.onload = function() {
-// 		var imagePreviews = $(".image-previews");
-// 		for (var i = 0; i < imagePreviews.length; i++) {
-// 			get_s3_resource(imagePreviews[i], amz_sign_s3);
-// 		}
-// 	};
-// })();
-
-// (function() {
-// 	var imageInputs = $(".image-inputs");
-// 	for (var i = 0; i < imageInputs.length; i++) {
-// 		var imageInputID = imageInputs[i].id;
-// 		imageInputs[i].addEventListener("change", function() {
-// 			startS3Upload(imageInputID, function() {
-// 				get_s3_resource("the_associated_preview");
-// 			});
-// 		});
-// 	}
-// })();
 
 

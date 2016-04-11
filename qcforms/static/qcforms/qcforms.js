@@ -141,7 +141,7 @@ function upload_private_S3_resource_2(file, folder) {
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){
 				var response = JSON.parse(xhr.responseText);
-				upload_file_2(file, response.signed_request, response.url);
+				return upload_file_2(file, response.signed_request, response.url);
 			}
 			else{
 				alert("Could not get signed URL.");
@@ -157,7 +157,7 @@ function upload_file_2(file, signed_request, url){
 	xhr.onload = function() {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 			// next_func(url);
-			alert("File uploaded to: " + url);
+			return url;
 		}
 	};
 	xhr.onerror = function() {
