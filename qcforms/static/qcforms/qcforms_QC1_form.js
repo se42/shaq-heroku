@@ -20,3 +20,9 @@ $(".image-col").each(function() {
 		}
 	});
 });
+
+
+$("#add-image-button").click(function() {
+	alert("Button to add a new image-col div!");
+});
+
