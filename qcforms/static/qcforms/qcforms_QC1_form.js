@@ -68,15 +68,22 @@
 		var imageInputGroups = $(".image-input-group");
 		for (var i = 0; i < imageInputGroups.length; i++) {
 			var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
-			var imageInput = imageInputGroups[i].getElementsByTagName("input")[0];
 			get_s3_resource(previewImage, amz_sign_s3);
-			imageInput.addEventListener("change", function() {
-				startS3Upload(imageInput.id, function() {
-					get_s3_resource(previewImage, amz_sign_s3);
-				});
-			});
 		}
 	};
+})();
+
+(function() {
+	var imageInputGroups = $(".image-input-group");
+	for (var i = 0; i < imageInputGroups.length; i++) {
+		var previewImage = imageInputGroups[i].getElementsByTagName("img")[0];
+		var imageInput = imageInputGroups[i].getElementsByTagName("input")[0];
+		imageInput.addEventListener("change", function() {
+			startS3Upload(imageInput.id, function() {
+				get_s3_resource(previewImage, amz_sign_s3);
+			});
+		});
+	}
 })();
 
 // (function() {
