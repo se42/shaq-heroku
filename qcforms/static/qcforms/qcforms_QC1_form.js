@@ -65,11 +65,16 @@
 $(document).ready(function() {
 	$(".image-previews").each(function() {
 		get_s3_resource(this, amz_sign_s3);
-		console.log("I tried");
 	});
 });
 
-
+$(".image-inputs").change(function() {
+	var file = this.files[0];
+	var folder = "int-nc-form";
+	if (file != null) {
+		upload_private_S3_resource_2(file, folder);
+	}
+});
 
 // (function() {
 // 	document.body.onload = function() {

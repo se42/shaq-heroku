@@ -132,3 +132,36 @@ function upload_file(file, signed_request, url, next_func){
 	};
 	xhr.send(file);
 }
+
+function upload_private_S3_resource_2(file, folder) {
+	var xhr = new XMLHttpRequest();
+	// var amz_sign_s3 is defined in script on HTML page
+	xhr.open("GET", amz_sign_s3+"?file_name="+file.name+"&file_type="+file.type+"&folder="+folder);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === 4){
+			if(xhr.status === 200){
+				var response = JSON.parse(xhr.responseText);
+				upload_file_2(file, response.signed_request, response.url);
+			}
+			else{
+				alert("Could not get signed URL.");
+			}
+		}
+	};
+	xhr.send();
+}
+
+function upload_file_2(file, signed_request, url){
+	var xhr = new XMLHttpRequest();
+	xhr.open("PUT", signed_request);
+	xhr.onload = function() {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+			// next_func(url);
+			alert("File uploaded to: " + url);
+		}
+	};
+	xhr.onerror = function() {
+		alert("Could not upload file.");
+	};
+	xhr.send(file);
+}
