@@ -141,7 +141,7 @@ function upload_private_S3_resource_2(file, folder) {
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){
 				var response = JSON.parse(xhr.responseText);
-				return upload_file_2(file, response.signed_request, response.url);
+				upload_file_2(file, response.signed_request, response.url);
 			}
 			else{
 				alert("Could not get signed URL.");
