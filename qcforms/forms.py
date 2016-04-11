@@ -59,7 +59,7 @@ IntNCImageInlineFormset = inlineformset_factory(
 	models.IntNCReport,
 	models.IntNCImage,
 	fields=('image_url',),
-	widgets={'image_url': URLInput(attrs={'type': 'hidden',}),},
+	# widgets={'image_url': URLInput(attrs={'type': 'hidden',}),},
 	extra=0,
 	can_delete=False,
 )

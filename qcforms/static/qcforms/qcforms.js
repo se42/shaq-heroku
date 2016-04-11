@@ -79,7 +79,7 @@ function get_private_S3_resource(element_ID, signature_url){
 	xhr.send();
 }
 
-// Based on get_private_s3_resource but will take an element (better for iterating)
+// Based on get_private_s3_resource but will take an element
 function get_s3_resource(element, signature_view_url) {
 	var resource_url = element.src;
 	var xhr = new XMLHttpRequest();

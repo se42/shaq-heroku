@@ -16,3 +16,4 @@ $(".image-inputs").change(function() {
 	}
 });
 
+
