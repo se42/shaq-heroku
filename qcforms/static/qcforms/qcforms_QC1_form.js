@@ -85,10 +85,7 @@ function startS3Upload(imageInputID) {
 	var inputElement = document.getElementById(imageInputID);
 	var files = inputElement.files;
 	var file = files[0];
-	if(file == null){
-		alert("No file selected.");
-	}
-	else{
+	if(file != null){
 		var folder = "int-nc-form";
 		upload_private_S3_resource(file, folder, function_to_update_page_elements);
 	}
