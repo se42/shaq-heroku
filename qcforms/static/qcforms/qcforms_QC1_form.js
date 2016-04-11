@@ -75,13 +75,15 @@
 (function() {
 	var imageInputs = $(".image-inputs");
 	for (var i = 0; i < imageInputs.length; i++) {
-		imageInputs[i].addEventListener("change", function() {startS3Upload(imageInputs[i]);});
+		var imageInputID = imageInputs[i].id;
+		imageInputs[i].addEventListener("change", function() {startS3Upload(imageInputID);});
 	}
 })();
 
 
-function startS3Upload(input_element) {
-	var files = input_element.files;
+function startS3Upload(imageInputID) {
+	var inputElement = document.getElementById(imageInputID);
+	var files = inputElement.files;
 	var file = files[0];
 	if(file == null){
 		alert("No file selected.");
