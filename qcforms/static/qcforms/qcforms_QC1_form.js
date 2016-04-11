@@ -47,7 +47,10 @@ $(".image-inputs").change(function() {
 	var file = this.files[0];
 	var folder = "int-nc-form";
 	if (file != null) {
-		upload_private_S3_resource(file, folder, urlAlert);
+		upload_private_S3_resource(file, folder, function(url) {
+			this.next("img").src = url;
+			get_s3_resource(this.next("img"), amz_sign_s3);
+		});
 	}
 });
 
