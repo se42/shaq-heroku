@@ -65,6 +65,7 @@
 $(document).ready(function() {
 	$(".image-previews").each(function() {
 		get_s3_resource($(this), amz_sign_s3);
+		console.log("I tried");
 	});
 });
 
