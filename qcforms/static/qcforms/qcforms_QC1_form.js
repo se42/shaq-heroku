@@ -49,15 +49,12 @@ $(".image-inputs").change(function() {
 	if (file != null) {
 		upload_private_S3_resource(file, folder, function(url) {
 			alert("The url is: " + url);
-			this.next("img").src = url;
+			this.next("img").attr("src", url);
 			get_s3_resource(this.next("img"), amz_sign_s3);
 		});
 	}
 });
 
-function urlAlert(url) {
-	alert("RETURNED URL: " + url);
-}
 
 
 
