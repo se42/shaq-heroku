@@ -50,7 +50,7 @@ $(".image-inputs").change(function() {
 		upload_private_S3_resource(file, folder, function(url) {
 			alert("The url is: " + url);
 			$(this).next().attr("src", url);
-			get_s3_resource($(this).next("img"), amz_sign_s3);
+			get_s3_resource($(this).next()[0], amz_sign_s3);
 		});
 	}
 });
