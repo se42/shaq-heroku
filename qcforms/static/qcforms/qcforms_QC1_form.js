@@ -24,5 +24,18 @@ $(".image-col").each(function() {
 
 $("#add-image-button").click(function() {
 	alert("Button to add a new image-col div!");
+	/*
+	1 - formset div needs an id
+	2 - add new image-col div
+	3 - add new image-input file input
+	4 - add new image-preview img element
+	5 - create new form-group div with label/input elements for url field
+	6 - create new hidden input for id_intncimage_set-x-id with no value
+		--> you should be able to determine the next x from the management_form data
+	7 - create new hidden input for id_intncimage_set-x-report with
+		value = {{ image_form.report.id }} or whatever it is
+	8 - increment management_form TOTAL_FORMS count value
+	9 - disable this button if there is an empty image input/url field available
+	*/
 });
 

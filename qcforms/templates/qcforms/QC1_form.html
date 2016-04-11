@@ -22,7 +22,7 @@
 		{% for image_form in formset %}
 			<div class="image-col col-xs-12 col-sm-6 col-md-4">
 				<input class="image-input" type="file"/>
-				<img class="img-responsive img-thumbnail image-preview" src="{{ image_form.image_url.value }}">
+				<img class="image-preview img-responsive img-thumbnail" src="{{ image_form.image_url.value }}">
 				{% bootstrap_form image_form %}
 			</div>
 		{% endfor %}
