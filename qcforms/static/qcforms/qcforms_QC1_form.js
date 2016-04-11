@@ -47,12 +47,13 @@ $(".image-inputs").change(function() {
 	var file = this.files[0];
 	var folder = "int-nc-form";
 	if (file != null) {
-		var url = upload_private_S3_resource_2(file, folder);
-		alert("RETURNED URL: " + url);
+		upload_private_S3_resource(file, folder, urlAlert);
 	}
 });
 
-
+function urlAlert(url) {
+	alert("RETURNED URL: " + url);
+}
 
 
 
