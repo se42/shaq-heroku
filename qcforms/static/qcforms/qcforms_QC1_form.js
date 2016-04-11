@@ -51,6 +51,7 @@ $("#add-image-button").click(function() {
 				+ "<input class=\"image-input\" type=\"file\"/>"
 				+ "<img class=\"image-preview img-responsive img-thumbnail\" "
 				+ "src=\"http://placehold.it/200x200\"></div>");
+	setImageColOnChange();
 	/*
 	2 - add new image-col div
 	3 - add new image-input file input
