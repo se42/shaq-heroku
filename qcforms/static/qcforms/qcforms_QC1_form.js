@@ -10,14 +10,17 @@ function setImageColOnChange() {
 	$(".image-col").each(function() {
 	var previewElement = $(this).children(".image-preview")[0];
 	var imageUrlInput = $(this).children("input")[0];
+	var spinSpan = $(this).children(".spin-span");
 	$(this).children(".image-input-btn").children(".image-input").change(function() {
 		var file = this.files[0];
 		var folder = "int-nc-form";
 		if (file != null) {
+			spinSpan.toggleClass("fa fa-spinner fa-spin");
 			upload_private_S3_resource(file, folder, function(url) {
 				previewElement.src = url;
 				get_s3_resource(previewElement, amz_sign_s3);
 				imageUrlInput.value = url;
+				spinSpan.toggleClass("fa fa-spinner fa-spin");
 			});
 		}
 	});
