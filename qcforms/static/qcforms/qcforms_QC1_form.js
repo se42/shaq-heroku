@@ -37,24 +37,23 @@ $("#add-image-button").click(function() {
 				+ nextSetID+"-image_url\">Image url</label>"
 				+ "<input class=\"form-control\" id=\"id_intncimage_set-"
 				+ nextSetID+"-image_url\" maxlength=\"200\" name=\"intncimage_set-"
-				+ nextSetID+"-image_url\" placeholder=\"Image url\" "
-				+ "required=\"required\" title=\"\" type=\"url\" />"
+				+ nextSetID+"-image_url\" placeholder=\"Image url\" title=\"\" type=\"url\" />"
 				+ "</div>"
 				+ "<input id=\"id_intncimage_set-"+nextSetID+"-id\" "
 				+ "name=\"intncimage_set-"+nextSetID+"-id\" type=\"hidden\" />"
 				+ "<input id=\"id_intncimage_set-"+nextSetID+"-report\" "
 				+ "name=\"intncimage_set-"+nextSetID+"-report\" type=\"hidden\" />"
 				+ "</div>");
-	if (reportID > 0) {
-		document.getElementById("id_intncimage_set-"+nextSetID+"-report").value = reportID;
-	}
 	setImageColOnChange();
 	$("#add-image-button").attr("disabled", "disabled");
 	var newImageFieldID = "image-input-"+nextSetID;
 	var newImageField = document.getElementById(newImageFieldID);
 	newImageField.onchange = function() {
-		$("#add-image-button").attr("disabled", null);
+		if (reportID > 0) {
+			document.getElementById("id_intncimage_set-"+nextSetID+"-report").value = reportID;
+		}
 		totalForms.value++;
+		$("#add-image-button").attr("disabled", null);
 	};
 });
 
