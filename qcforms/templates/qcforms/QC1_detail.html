@@ -48,7 +48,7 @@ Interior NC {{ report.report_number }}
 			</tr>
 			<tr>
 				<td>ISSUE SUMMARY</td>
-				<td>{{ report.issue_summary }}</td>
+				<td>{{ report.issue_summary|linebreaks }}</td>
 			</tr>
 			<tr>
 				<td>ISSUE IMAGE(S)</td>
@@ -120,11 +120,11 @@ Interior NC {{ report.report_number }}
 			</tr>
 			<tr>
 				<td>CONTAINMENT ACTIVITY</td>
-				<td>{{ report.containment_activity }}</td>
+				<td>{{ report.containment_activity|linebreaks }}</td>
 			</tr>
 			<tr>
 				<td>ADDITIONAL INFORMATION</td>
-				<td>{{ report.additional_info }}</td>
+				<td>{{ report.additional_info|linebreaks }}</td>
 			</tr>
 			<tr>
 				<td>INTERNAL REPRESENTATIVE</td>
