@@ -60,6 +60,6 @@ IntNCImageInlineFormset = inlineformset_factory(
 	models.IntNCImage,
 	fields=('image_url',),
 	# widgets={'image_url': URLInput(attrs={'type': 'hidden',}),},
-	extra=0,
+	extra=1,
 	can_delete=False,
 )
