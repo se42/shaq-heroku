@@ -10,7 +10,7 @@ function setImageColOnChange() {
 	$(".image-col").each(function() {
 	var previewElement = $(this).children(".image-preview")[0];
 	var imageUrlInput = $(this).children(".form-group").children("input")[0];
-	$(this).children(".image-input").change(function() {
+	$(this).children(".image-input-btn").children(".image-input").change(function() {
 		var file = this.files[0];
 		var folder = "int-nc-form";
 		if (file != null) {
@@ -29,12 +29,13 @@ $("#add-image-button").click(function() {
 	var totalForms = document.getElementById("id_intncimage_set-TOTAL_FORMS");
 	var nextSetID = totalForms.value;
 	$("#image-panel").append("<div class=\"image-col col-xs-12 col-sm-6 col-md-4\">"
-				+ "<input id=\"image-input-"+nextSetID+"\" class=\"image-input\" type=\"file\"/>"
+				+ "<button class=\"btn btn-default btn-block image-input-btn\">Change Image"
+				+ "<input id=\"image-input-"+nextSetID+"\" class=\"image-input\" "
+				+ "type=\"file\" accept=\"image/*\"/>"
+				+ "</button>"
 				+ "<img class=\"image-preview img-responsive img-thumbnail\" "
 				+ "src=\"https://placehold.it/200x200\">"
 				+ "<div class=\"form-group\">"
-				+ "<label class=\"control-label\" for=\"id_intncimage_set-"
-				+ nextSetID+"-image_url\">Image url</label>"
 				+ "<input class=\"form-control\" id=\"id_intncimage_set-"
 				+ nextSetID+"-image_url\" maxlength=\"200\" name=\"intncimage_set-"
 				+ nextSetID+"-image_url\" placeholder=\"Image url\" title=\"\" type=\"url\" />"
