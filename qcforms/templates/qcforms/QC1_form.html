@@ -42,6 +42,7 @@
 {% block scripts %}
 <script type="text/javascript">
 var amz_sign_s3="{% url 'qcforms:amz_sign_s3' %}"
+var reportID="{{ report_id }}"
 </script>
 <script src="{% static 'qcforms/qcforms.js' %}"></script>
 <script src="{% static 'qcforms/qcforms_QC1_form.js' %}"></script>
