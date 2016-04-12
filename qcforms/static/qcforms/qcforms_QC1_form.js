@@ -15,12 +15,10 @@ function setImageColOnChange() {
 		var file = this.files[0];
 		var folder = "int-nc-form";
 		if (file != null) {
-			spinSpan.toggleClass("fa fa-spinner fa-spin");
 			upload_private_S3_resource(file, folder, function(url) {
 				previewElement.src = url;
 				get_s3_resource(previewElement, amz_sign_s3);
 				imageUrlInput.value = url;
-				spinSpan.toggleClass("fa fa-spinner fa-spin");
 			});
 		}
 	});
