@@ -32,8 +32,12 @@ class QCFormsIndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView
 				'name': 'QC-001 Interior Component NC Index',
 			},
 			{
-				'view': reverse('qcforms:int_nc_index'),
-				'name': 'Interior Component NC Index',
+				'view': "#",
+				'name': 'Form 2',
+			},
+			{
+				'view': "#",
+				'name': 'Form 3',
 			},
 		]
 		return url_list
