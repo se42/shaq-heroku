@@ -9,7 +9,7 @@ $(document).ready(function() {
 function setImageColOnChange() {
 	$(".image-col").each(function() {
 	var previewElement = $(this).children(".image-preview")[0];
-	var imageUrlInput = $(this).children(".form-group").children("input")[0];
+	var imageUrlInput = $(this).children("input")[0];
 	$(this).children(".image-input-btn").children(".image-input").change(function() {
 		var file = this.files[0];
 		var folder = "int-nc-form";
@@ -35,11 +35,8 @@ $("#add-image-button").click(function() {
 				+ "</button>"
 				+ "<img class=\"image-preview img-responsive img-thumbnail\" "
 				+ "src=\"https://placehold.it/200x200\">"
-				+ "<div class=\"form-group\">"
-				+ "<input class=\"form-control\" id=\"id_intncimage_set-"
-				+ nextSetID+"-image_url\" maxlength=\"200\" name=\"intncimage_set-"
-				+ nextSetID+"-image_url\" placeholder=\"Image url\" title=\"\" type=\"url\" />"
-				+ "</div>"
+				+ "<input id=\"id_intncimage_set-"+nextSetID+"-image_url\" maxlength=\"200\" "
+				+ "name=\"intncimage_set-"+nextSetID+"-image_url\" type=\"hidden\" />"
 				+ "<input id=\"id_intncimage_set-"+nextSetID+"-id\" "
 				+ "name=\"intncimage_set-"+nextSetID+"-id\" type=\"hidden\" />"
 				+ "<input id=\"id_intncimage_set-"+nextSetID+"-report\" "
