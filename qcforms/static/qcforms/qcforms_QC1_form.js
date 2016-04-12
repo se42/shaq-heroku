@@ -34,7 +34,7 @@ $("#add-image-button").click(function() {
 				+ "type=\"file\" accept=\"image/*\"/>"
 				+ "</button>"
 				+ "<img class=\"image-preview img-responsive img-thumbnail\" "
-				+ "src=\"https://placehold.it/200x200\">"
+				+ "src=\"https://placehold.it/500?text=NewImage\">"
 				+ "<input id=\"id_intncimage_set-"+nextSetID+"-image_url\" maxlength=\"200\" "
 				+ "name=\"intncimage_set-"+nextSetID+"-image_url\" type=\"hidden\" />"
 				+ "<input id=\"id_intncimage_set-"+nextSetID+"-id\" "
