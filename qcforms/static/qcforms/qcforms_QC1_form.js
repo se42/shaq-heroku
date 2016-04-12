@@ -30,7 +30,7 @@ $("#add-image-button").click(function() {
 	var nextSetID = totalForms.value;
 	totalForms.value++;
 	$("#image-panel").append("<div class=\"image-col col-xs-12 col-sm-6 col-md-4\">"
-				+ "<input class=\"image-input\" type=\"file\"/>"
+				+ "<input id=\"image-input-"+nextSetID+"\" class=\"image-input\" type=\"file\"/>"
 				+ "<img class=\"image-preview img-responsive img-thumbnail\" "
 				+ "src=\"https://placehold.it/200x200\">"
 				+ "<div class=\"form-group\">"
@@ -51,9 +51,9 @@ $("#add-image-button").click(function() {
 	}
 	setImageColOnChange();
 	$("#add-image-button").attr("disabled", "disabled");
-	var openURLFieldID = "id_intncimage_set-"+nextSetID+"-image_url";
-	var openURLField = document.getElementById(openURLFieldID);
-	openURLField.onchange = function() {
+	var newImageFieldID = "image-input-"+nextSetID;
+	var newImageField = document.getElementById(newImageFieldID);
+	newImageField.onchange = function() {
 		$("#add-image-button").attr("disabled", null);
 	};
 });
