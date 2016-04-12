@@ -47,6 +47,8 @@ $("#add-image-button").click(function() {
 	$("#add-image-button").attr("disabled", "disabled");
 	var newImageFieldID = "image-input-"+nextSetID;
 	var newImageField = document.getElementById(newImageFieldID);
+	newImageField.scrollIntoView();
+	window.scrollBy(0, -70);
 	newImageField.onchange = function() {
 		if (reportID > 0) {
 			document.getElementById("id_intncimage_set-"+nextSetID+"-report").value = reportID;
