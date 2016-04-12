@@ -11,8 +11,8 @@ Interior NC {{ report.report_number }}
 
 {% block main %}
 <div class="container">
-	<p><a class="btn btn-block btn-info" href="{% url 'qcforms:QC1_index' %}" role="button">Back to QC-001 Index</a></p>
-	<p><a class="btn btn-block btn-primary" href="{% url 'qcforms:QC1_form' report.id %}" role="button">Edit Report</a></p>
+	<p><a class="btn btn-block btn-primary" href="{% url 'qcforms:QC1_index' %}" role="button">Back to QC-001 Index</a></p>
+	<p><a class="btn btn-block btn-success" href="{% url 'qcforms:QC1_form' report.id %}" role="button">Edit Report</a></p>
 	{% if report %}
 		<table class="table table-bordered table-hover table-responsive">
 			<tr>
