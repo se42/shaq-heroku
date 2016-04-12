@@ -4,6 +4,8 @@
 
 .image-preview {
 	margin: 5px;
+	max-width: 400px;
+	max-height: 400px
 }
 
 .image-input-btn {
