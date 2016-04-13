@@ -32,6 +32,10 @@ Interior NC {{ report.report_number }}
 				<td class="bool-go-no-go">{{ report.resolved }}</td>
 			</tr>
 			<tr>
+				<td>QUALITY ALERT?</td>
+				<td><span class="bool-go-no-go">{{ report.qualityalert.resolved }}</span><a href="{% url 'qcforms:quality_alert_detail' report.qualityalert.id %}"> {{ report.qualityalert.report_number }}</a></td>
+			</tr>
+			<tr>
 				<td>ORDER NUMBER</td>
 				<td>{{ report.order_number }}</td>
 			</tr>
@@ -114,10 +118,6 @@ Interior NC {{ report.report_number }}
 			<tr>
 				<td>CONTAINMENT?</td>
 				<td>{{ report.containment }}</td>
-			</tr>
-			<tr>
-				<td>QUALITY ALERT?</td>
-				<td>{{ report.quality_alert }}</td>
 			</tr>
 			<tr>
 				<td>CONTAINMENT ACTIVITY</td>

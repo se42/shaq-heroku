@@ -27,7 +27,7 @@ QC-001 Index
 			<tr>
 				<td><a href="{% url 'qcforms:QC1_detail' report.id %}">{{ report.report_number }}</a></td>
 				<td>{{ report.issue_summary|linebreaks }}</td>
-				<td class="bool-go-no-go text-center">{{ report.qualityalert.resolved }}</td>
+				<td class="text-center"><a href="{% url 'qcforms:quality_alert_detail' report.qualityalert.id %}" class="bool-go-no-go">{{ report.qualityalert.resolved }}</a></td>
 				<td class="bool-exclaim-true text-center">{{ report.containment }}</td>
 				<td class="bool-go-no-go text-center">{{ report.resolved }}</td>
 			</tr>
