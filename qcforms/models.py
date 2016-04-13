@@ -84,7 +84,6 @@ class IntNCReport(models.Model):
 	qn_num = models.CharField(max_length=250, blank=True)
 	accepts = models.CharField(max_length=250, choices=responsibility, default='Under Investigation')
 	containment = models.BooleanField()
-	quality_alert = models.BooleanField()
 	containment_activity = models.TextField(blank=True)
 	additional_info = models.TextField(blank=True)
 	internal_rep = models.CharField(max_length=250)
