@@ -33,7 +33,13 @@ Interior NC {{ report.report_number }}
 			</tr>
 			<tr>
 				<td>QUALITY ALERT?</td>
-				<td><span class="bool-go-no-go">{{ report.qualityalert.resolved }}</span><a href="{% url 'qcforms:quality_alert_detail' report.qualityalert.id %}"> {{ report.qualityalert.report_number }}</a></td>
+				<td>
+				{% if report.qualityalert %}
+					<span class="bool-go-no-go">{{ report.qualityalert.resolved }}</span><a href="{% url 'qcforms:quality_alert_detail' report.qualityalert.id %}" class="btn btn-link" role="button"> {{ report.qualityalert.report_number }}</a>
+				{% else %}
+					<span class="bool-go-no-go"></span>
+				{% endif %}
+				</td>
 			</tr>
 			<tr>
 				<td>ORDER NUMBER</td>
