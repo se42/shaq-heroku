@@ -11,8 +11,8 @@ Interior NC {{ report.report_number }}
 
 {% block main %}
 <div class="container">
-	<p><a class="btn btn-block btn-primary" href="{% url 'qcforms:QC1_index' %}" role="button">Back to QC-001 Index</a></p>
-	<p><a class="btn btn-block btn-success" href="{% url 'qcforms:QC1_form' report.id %}" role="button">Edit Report</a></p>
+	<p><a class="btn btn-block btn-primary" href="{% url 'qcforms:quality_alert_index' %}" role="button">Back to QC-002 Index</a></p>
+	<p><a class="btn btn-block btn-success" href="{% url 'qcforms:quality_alert_form' report.id %}" role="button">Edit QAlert</a></p>
 	{% if report %}
 		<table class="table table-bordered table-hover table-responsive">
 			<tr>
@@ -29,7 +29,7 @@ Interior NC {{ report.report_number }}
 			</tr>
 			<tr>
 				<td>INT NC NUMBER</td>
-				<td>{{ report.intncreport.report_number }}</td>
+				<td><a href="{% url 'qcforms:QC1_detail' report.intncreport.id %}">{{ report.intncreport.report_number }}</a></td>
 			</tr>
 			<tr>
 				<td>ALERT DATE</td>
