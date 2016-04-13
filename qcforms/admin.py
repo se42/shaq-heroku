@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import IntNCReport, IntNCImage
+from . import models
 
-admin.site.register(IntNCReport)
-admin.site.register(IntNCImage)
+admin.site.register(models.IntNCReport)
+admin.site.register(models.IntNCImage)
+admin.site.register(models.QualityAlert)

@@ -1,0 +1,64 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'qcforms/qcforms.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block title %}
+Interior NC {{ report.report_number }}
+{% endblock title %}
+
+{% block main %}
+<div class="container">
+	<p><a class="btn btn-block btn-primary" href="{% url 'qcforms:QC1_index' %}" role="button">Back to QC-001 Index</a></p>
+	<p><a class="btn btn-block btn-success" href="{% url 'qcforms:QC1_form' report.id %}" role="button">Edit Report</a></p>
+	{% if report %}
+		<table class="table table-bordered table-hover table-responsive">
+			<tr>
+				<td>DOCUMENT NUMBER</td>
+				<td>{{ report.doc_number }}</td>
+			</tr>
+			<tr>
+				<td>DOCUMENT TITLE</td>
+				<td>{{ report.doc_title }}</td>
+			</tr>
+			<tr>
+				<td>REPORT NUMBER</td>
+				<td>{{ report.report_number }}</td>
+			</tr>
+			<tr>
+				<td>INT NC NUMBER</td>
+				<td>{{ report.intncreport.report_number }}</td>
+			</tr>
+			<tr>
+				<td>ALERT DATE</td>
+				<td>{{ report.alert_date }}</td>
+			</tr>
+			<tr>
+				<td>ISSUED BY</td>
+				<td>{{ report.issued_by }}</td>
+			</tr>
+			<tr>
+				<td>REPORT TEXT</td>
+				<td>{{ report.report_text|linebreaks }}</td>
+			</tr>
+			<tr>
+				<td>ALERT COMPLETE?</td>
+				<td class="bool-go-no-go">{{ report.complete }}</td>
+			</tr>
+			<tr>
+				<td>ALERT RESOLVED?</td>
+				<td class="bool-go-no-go">{{ report.resolved }}</td>
+			</tr>
+		</table>
+	{% else %}
+		<p>No report.</p>
+	{% endif %}
+</div>
+{% endblock main %}
+
+{% block scripts %}
+<script src="{% static 'qcforms/qcforms.js' %}"></script>
+{% endblock scripts %}
+

@@ -39,6 +39,7 @@ class IntNCReportForm(ModelForm):
 			'report_date': DateInput(attrs={'type': 'date',}),
 		}
 
+
 IntNCImageInlineFormset = inlineformset_factory(
 	models.IntNCReport,
 	models.IntNCImage,
@@ -47,3 +48,19 @@ IntNCImageInlineFormset = inlineformset_factory(
 	extra=0,
 	can_delete=False,
 )
+
+
+class QualityAlertForm(ModelForm):
+	class Meta:
+		model = models.QualityAlert
+		fields = [
+			'intncreport',
+			'alert_date',
+			'issued_by',
+			'report_text',
+			'complete',
+			'resolved',
+		]
+		widgets = {
+			'alert_date': DateInput(attrs={'type': 'date',}),
+		}

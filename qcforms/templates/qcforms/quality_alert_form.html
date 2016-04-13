@@ -1,0 +1,32 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block title %}Quality Alert Form{% endblock title %}
+
+{% block head %}
+	{% load bootstrap3 %}
+	{% bootstrap_messages %}
+	{% load staticfiles %}
+	<link href="{% static 'qcforms/qcforms.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block main %}
+<div class="container">
+	<h1>QC-002 Quality Alert Form</h1>
+	<form action="{% url 'qcforms:quality_alert_form' report_id %}" method="post" class="form">
+		{% csrf_token %}
+		<div class="row">
+		{% bootstrap_form form %}
+		
+		{% buttons submit='Submit' reset='Reset' %}
+		{% endbuttons %}
+		</div>
+	</form>
+
+</div>
+{% endblock main %}
+
+{% block scripts %}
+<script src="{% static 'qcforms/qcforms.js' %}"></script>
+{% endblock scripts %}
+
+

@@ -29,11 +29,11 @@ class QCFormsIndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView
 		url_list = [
 			{
 				'view': reverse('qcforms:QC1_index'),
-				'name': 'QC-001 Interior Component NC Index',
+				'name': 'QC-001\nInterior Component NC Index',
 			},
 			{
-				'view': "#",
-				'name': 'Form 2',
+				'view': reverse('qcforms:quality_alert_index'),
+				'name': 'QC-002\nQuality Alert',
 			},
 			{
 				'view': "#",
@@ -46,7 +46,7 @@ class QCFormsIndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView
 		return self.request.user.is_active
 
 ###############################################
-# QC-001 / complete Interior Component NC views
+# QC-001 / Interior Component NC views
 
 class QC1IndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
 	"""
@@ -112,6 +112,66 @@ def QC1_report_form(request, report_id):
 				'report_id': report_id,
 			}
 			return render(request, 'qcforms/QC1_form.html', context)
+
+
+###############################################
+# QC-002 / Quality Alert views
+
+class QualityAlertIndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+	"""
+	Index view to display all instances of the Interior Component NC Form
+	"""
+	template_name = 'qcforms/quality_alert_index.html'
+	context_object_name = 'report_list'
+
+	def get_queryset(self):
+		return models.QualityAlert.objects.order_by('report_number')
+
+	def test_func(self):
+		return self.request.user.is_active
+
+
+class QualityAlertDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
+	"""
+	Detail view to display specific instances of the Quality Alert Form
+	"""
+	model = models.QualityAlert
+	template_name = 'qcforms/quality_alert_detail.html'
+	context_object_name = 'report'
+
+	def test_func(self):
+		return self.request.user.is_active
+
+@active_and_login_required
+def QualityAlert_report_form(request, report_id):
+	if request.method == 'POST':
+		if report_id == 'new':
+			form = forms.QualityAlertForm(request.POST)
+			if form.is_valid():
+				report = form.save()
+			return HttpResponseRedirect(reverse('qcforms:quality_alert_detail', args=(report.id,)))
+		else:
+			report = get_object_or_404(models.QualityAlert, pk=report_id)
+			form = forms.QualityAlertForm(request.POST, instance=report)
+			if form.is_valid():
+				report = form.save()
+			return HttpResponseRedirect(reverse('qcforms:quality_alert_detail', args=(report.id,)))
+	else:
+		if report_id == 'new':
+			form = forms.QualityAlertForm()
+			context = {
+				'form': form,
+				'report_id': report_id,
+			}
+			return render(request, 'qcforms/quality_alert_form.html', context)
+		else:
+			report = get_object_or_404(models.QualityAlert, pk=report_id)
+			form = forms.QualityAlertForm(instance=report)
+			context = {
+				'form': form,
+				'report_id': report_id,
+			}
+			return render(request, 'qcforms/quality_alert_form.html', context)
 
 
 #########################

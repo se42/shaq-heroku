@@ -1,0 +1,45 @@
+{% extends 'shaq/project_base.html' %}
+
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'qcforms/qcforms.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block title %}
+Quality Alert Index
+{% endblock title %}
+
+{% block main %}
+<div class="container">
+	<h2>QC-002 Quality Alert Index</h2>
+	<p><a class="btn btn-block btn-success" href="{% url 'qcforms:quality_alert_form' 'new' %}" role="button">New Quality Alert</a></p>
+
+	{% if report_list %}
+		<table class="table table-bordered table-hover table-responsive">
+		<tr class="info">
+			<th>QALERT NUMBER</th>
+			<th>INT NC NUMBER</th>
+			<th>QALERT DATE</th>
+			<th>QALERT COMPLETE</th>
+			<th>QALERT RESOLVED</th>
+		</tr>
+		{% for report in report_list %}
+			<tr>
+				<td><a href="{% url 'qcforms:quality_alert_detail' report.id %}">{{ report.report_number }}</a></td>
+				<td><a href="{% url 'qcforms:QC1_detail' report.intncreport.id %}">{{ report.intncreport.report_number }}</a></td>
+				<td>{{ report.alert_date }}</td>
+				<td class="bool-go-no-go text-center">{{ report.complete }}</td>
+				<td class="bool-go-no-go text-center">{{ report.resolved }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<p>No reports are available.</p>
+	{% endif %}
+
+</div>
+{% endblock main %}
+
+{% block scripts %}
+<script src="{% static 'qcforms/qcforms.js' %}"></script>
+{% endblock scripts %}

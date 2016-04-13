@@ -97,7 +97,7 @@ class IntNCReport(models.Model):
 
 	def save(self, *args, **kwargs):
 		if self.report_number == 'auto':
-			order_date = self.order_number + '-{t:%Y%m%d}'.format(t=datetime.date.today())
+			order_date = self.order_number + '-{t:%y%m%d}'.format(t=datetime.date.today())
 			x = IntNCReport.objects.filter(report_number__contains=order_date)
 			uid = len(x) + 1
 			self.report_number = '{order_date}-{uid}'.format(order_date=order_date, uid=uid)
@@ -110,5 +110,34 @@ class IntNCImage(models.Model):
 
 	def __str__(self):
 		return self.report.report_number
-		
+
+
+class QualityAlert(models.Model):
+	doc_number = models.CharField('document number', max_length=250, default='QC-002', editable=False)
+	doc_title = models.CharField('document title', max_length=250, editable=False,
+			default='Quality Alert')
+	report_number = models.CharField(max_length=250, default="auto", editable=False)
+	intncreport = models.ForeignKey('IntNCReport', on_delete=models.PROTECT)
+	alert_date = models.DateField(default=datetime.date.today)
+	issued_by = models.CharField(max_length=250, blank=True)
+	report_text = models.TextField(blank=True)
+	complete = models.BooleanField(default=False)
+	resolved = models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.report_number
+
+	def save(self, *args, **kwargs):
+		if self.report_number == 'auto':
+			date_string = '{t:%y%m%d}'.format(t=datetime.date.today())
+			x = QualityAlert.objects.filter(report_number__contains=date_string)
+			uid = len(x) + 1
+			self.report_number = '{date_string}-{uid}'.format(date_string=date_string, uid=uid)
+		super(QualityAlert, self).save(*args, **kwargs)
+
+
+
+
+
+
 
