@@ -25,8 +25,8 @@ Quality Alert Index
 		</tr>
 		{% for report in report_list %}
 			<tr>
-				<td><a href="{% url 'qcforms:quality_alert_detail' report.id %}">{{ report.report_number }}</a></td>
-				<td><a href="{% url 'qcforms:QC1_detail' report.intncreport.id %}">{{ report.intncreport.report_number }}</a></td>
+				<td><a href="{% url 'qcforms:quality_alert_detail' report.id %}" class="btn btn-default" role="button">{{ report.report_number }}</a></td>
+				<td><a href="{% url 'qcforms:QC1_detail' report.intncreport.id %}" class="btn btn-default" role="button">{{ report.intncreport.report_number }}</a></td>
 				<td>{{ report.alert_date }}</td>
 				<td class="bool-go-no-go text-center">{{ report.complete }}</td>
 				<td class="bool-go-no-go text-center">{{ report.resolved }}</td>

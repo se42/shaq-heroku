@@ -25,7 +25,7 @@ QC-001 Index
 		</tr>
 		{% for report in report_list %}
 			<tr>
-				<td><a href="{% url 'qcforms:QC1_detail' report.id %}">{{ report.report_number }}</a></td>
+				<td><a href="{% url 'qcforms:QC1_detail' report.id %}" class="btn btn-default" role="button">{{ report.report_number }}</a></td>
 				<td>{{ report.issue_summary|linebreaks }}</td>
 				<td class="text-center">
 					{% if report.qualityalert %}

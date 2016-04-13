@@ -29,7 +29,7 @@ Interior NC {{ report.report_number }}
 			</tr>
 			<tr>
 				<td>INT NC NUMBER</td>
-				<td><a href="{% url 'qcforms:QC1_detail' report.intncreport.id %}">{{ report.intncreport.report_number }}</a></td>
+				<td><a href="{% url 'qcforms:QC1_detail' report.intncreport.id %}" class="btn btn-default" role="button">{{ report.intncreport.report_number }}</a></td>
 			</tr>
 			<tr>
 				<td>ALERT DATE</td>
