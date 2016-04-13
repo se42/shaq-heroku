@@ -117,7 +117,7 @@ class QualityAlert(models.Model):
 	doc_title = models.CharField('document title', max_length=250, editable=False,
 			default='Quality Alert')
 	report_number = models.CharField(max_length=250, default="auto", editable=False)
-	intncreport = models.ForeignKey('IntNCReport', on_delete=models.PROTECT)
+	intncreport = models.OneToOneField('IntNCReport', on_delete=models.PROTECT)
 	alert_date = models.DateField(default=datetime.date.today)
 	issued_by = models.CharField(max_length=250, blank=True)
 	report_text = models.TextField(blank=True)

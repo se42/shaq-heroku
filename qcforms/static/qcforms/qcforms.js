@@ -21,7 +21,14 @@ COMMON SELF-STARTING FUNCTIONS
 			myBools[i].innerHTML = "";
 			myBools[i].appendChild(iconElement);
 		}
-		else {}
+		else {
+			var iconElement = document.createElement("i");
+			var classAtt = document.createAttribute("class");
+			classAtt.value = "fa fa-minus fa-3x";
+			iconElement.setAttributeNode(classAtt);
+			myBools[i].innerHTML = "";
+			myBools[i].appendChild(iconElement);
+		}
 	}
 })();
 

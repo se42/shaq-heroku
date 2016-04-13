@@ -27,7 +27,6 @@ class IntNCReportForm(ModelForm):
 			'qn_num',
 			'accepts',
 			'containment',
-			'quality_alert',
 			'containment_activity',
 			'additional_info',
 			'internal_rep',
