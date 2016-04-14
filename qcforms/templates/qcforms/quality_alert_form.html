@@ -26,9 +26,11 @@
 {% endblock main %}
 
 {% block scripts %}
-<script type="text/javascript">
-	if ({{ intnc_id }}) {$("#id_intncreport")[0].value = {{ intnc_id }}}
-</script>
+{% if intnc_id %}
+	<script type="text/javascript">
+		$("#id_intncreport")[0].value = {{ intnc_id }};
+	</script>
+{% endif %}
 <script src="{% static 'qcforms/qcforms.js' %}"></script>
 {% endblock scripts %}
 
