@@ -27,7 +27,7 @@
 
 {% block scripts %}
 <script type="text/javascript">
-	$("#id_intncreport")[0].value = {{ intnc_id }};
+	if ({{ intnc_id }}) {$("#id_intncreport")[0].value = {{ intnc_id }}}
 </script>
 <script src="{% static 'qcforms/qcforms.js' %}"></script>
 {% endblock scripts %}
