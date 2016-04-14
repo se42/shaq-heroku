@@ -158,10 +158,15 @@ def QualityAlert_report_form(request, report_id):
 			return HttpResponseRedirect(reverse('qcforms:quality_alert_detail', args=(report.id,)))
 	else:
 		if report_id == 'new':
+			try:
+				intnc_id = request.GET['intnc_id']
+			except KeyError:
+				intnc_id = None
 			form = forms.QualityAlertForm()
 			context = {
 				'form': form,
 				'report_id': report_id,
+				'intnc_id': intnc_id,
 			}
 			return render(request, 'qcforms/quality_alert_form.html', context)
 		else:
