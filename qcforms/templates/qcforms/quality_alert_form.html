@@ -31,7 +31,7 @@
 		$("#id_intncreport")[0].value = {{ intnc_id }};
 	</script>
 {% endif %}
-{% if report_id == "new" %}
+{% if not intnc_id and report_id == "new" %}
 	<script type="text/javascript">
 		$("#id_intncreport").attr("disabled", false);
 	</script>
