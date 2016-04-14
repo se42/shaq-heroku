@@ -1,5 +1,5 @@
 from django.forms import ModelForm, inlineformset_factory
-from django.forms.widgets import DateInput, URLInput
+from django.forms.widgets import DateInput, Select, URLInput
 
 from . import models
 
@@ -62,4 +62,5 @@ class QualityAlertForm(ModelForm):
 		]
 		widgets = {
 			'alert_date': DateInput(attrs={'type': 'date',}),
+			'intncreport': Select(attrs={'disabled': 'disabled',}),
 		}

@@ -29,7 +29,11 @@
 {% if intnc_id %}
 	<script type="text/javascript">
 		$("#id_intncreport")[0].value = {{ intnc_id }};
-		$("#id_intncreport").attr("disabled", true);
+	</script>
+{% endif %}
+{% if report_id == "new" %}
+	<script type="text/javascript">
+		$("#id_intncreport").attr("disabled", false);
 	</script>
 {% endif %}
 <script src="{% static 'qcforms/qcforms.js' %}"></script>
