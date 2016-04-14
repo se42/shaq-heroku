@@ -28,7 +28,9 @@
 {% block scripts %}
 {% if intnc_id %}
 	<script type="text/javascript">
+		$("#id_intncreport").attr("disabled", false);
 		$("#id_intncreport")[0].value = {{ intnc_id }};
+		$("#id_intncreport").attr("disabled", true);
 	</script>
 {% endif %}
 {% if not intnc_id and report_id == "new" %}
