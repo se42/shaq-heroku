@@ -175,6 +175,7 @@ def QualityAlert_report_form(request, report_id):
 			context = {
 				'form': form,
 				'report_id': report_id,
+				'intnc_id': report.intncreport,
 			}
 			return render(request, 'qcforms/quality_alert_form.html', context)
 
