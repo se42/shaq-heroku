@@ -62,5 +62,4 @@ class QualityAlertForm(ModelForm):
 		]
 		widgets = {
 			'alert_date': DateInput(attrs={'type': 'date',}),
-			'intncreport': Select(attrs={'disabled': 'disabled',}),
 		}

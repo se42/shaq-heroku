@@ -29,11 +29,11 @@ class QCFormsIndexView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView
 		url_list = [
 			{
 				'view': reverse('qcforms:QC1_index'),
-				'name': 'QC-001\nInterior Component NC Index',
+				'name': 'QC-001 Interior Component NC Index',
 			},
 			{
 				'view': reverse('qcforms:quality_alert_index'),
-				'name': 'QC-002\nQuality Alert',
+				'name': 'QC-002 Quality Alert',
 			},
 			{
 				'view': "#",
