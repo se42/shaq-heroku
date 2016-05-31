@@ -1,3 +1,9 @@
+$(document).ready( function() {
+	// initialize DataTables
+	$('#qc1_table').DataTable();
+	$('#qc2_table').DataTable();
+} );
+
 /*
 COMMON SELF-STARTING FUNCTIONS
 */

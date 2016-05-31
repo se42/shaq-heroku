@@ -20,9 +20,12 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-		<!-- Font Awesome CDN -->
+		<!-- Font Awesome -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+		<!-- DataTables - a custom configuration with basically all of the options -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jq-2.2.3,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.12,af-2.1.2,b-1.2.1,b-colvis-1.2.1,b-html5-1.2.1,b-print-1.2.1,cr-1.3.2,fc-3.2.2,fh-3.1.2,kt-2.1.2,r-2.1.0,rr-1.1.2,sc-1.4.2,se-1.2.0/datatables.min.css"/>
+ 
 		<!-- Custom styles for this template -->
 		{% load staticfiles %}
 		<link href="{% static 'shaq/css/project_base.css' %}" rel="stylesheet">
@@ -49,6 +52,7 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
+						<li><a href="{% url 'site_home' %}">Dashboard</a></li>
 						<li><a href="{% url 'qcforms:qcforms_index' %}">QC Forms</a></li>
 						<!-- <li><a href="#">Link2</a></li>
 						<li class="dropdown">
@@ -103,6 +107,9 @@
 
 			})();
 		</script>
+
+		<!-- DataTables - a custom configuration with basically all of the options -->
+		<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jq-2.2.3,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.12,af-2.1.2,b-1.2.1,b-colvis-1.2.1,b-html5-1.2.1,b-print-1.2.1,cr-1.3.2,fc-3.2.2,fh-3.1.2,kt-2.1.2,r-2.1.0,rr-1.1.2,sc-1.4.2,se-1.2.0/datatables.min.js"></script>
 
 		{% block scripts %}
 		{% endblock scripts %}

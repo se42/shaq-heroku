@@ -73,6 +73,7 @@ class QC1DetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView)
 	def test_func(self):
 		return self.request.user.is_active
 
+
 @active_and_login_required
 def QC1_report_form(request, report_id):
 	if request.method == 'POST':

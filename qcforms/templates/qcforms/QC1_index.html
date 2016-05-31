@@ -15,14 +15,17 @@ QC-001 Index
 	<p><a class="btn btn-block btn-success" href="{% url 'qcforms:QC1_form' 'new' %}" role="button">New Report</a></p>
 
 	{% if report_list %}
-		<table class="table table-bordered table-hover table-responsive">
-		<tr class="info">
-			<th>REPORT NUMBER</th>
-			<th>ISSUE SUMMARY</th>
-			<th>QALERT RESOLVED</th>
-			<th>CONTAINMENT</th>
-			<th>NC RESOLVED</th>
-		</tr>
+		<table id="qc1_table" class="table table-bordered table-hover table-responsive display">
+		<thead>
+			<tr class="info">
+				<th>REPORT NUMBER</th>
+				<th>ISSUE SUMMARY</th>
+				<th>QALERT RESOLVED</th>
+				<th>CONTAINMENT</th>
+				<th>NC RESOLVED</th>
+			</tr>
+		</thead>
+		<tbody>
 		{% for report in report_list %}
 			<tr>
 				<td><a href="{% url 'qcforms:QC1_detail' report.id %}" class="btn btn-default" role="button">{{ report.report_number }}</a></td>
@@ -38,6 +41,7 @@ QC-001 Index
 				<td class="bool-go-no-go text-center">{{ report.resolved }}</td>
 			</tr>
 		{% endfor %}
+		</tbody>
 		</table>
 	{% else %}
 		<p>No reports are available.</p>
