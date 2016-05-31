@@ -21,7 +21,7 @@ from .utils import active_and_login_required
 
 @active_and_login_required
 def home_uri(request):
-	return render(request, 'shaq/project_home.html')
+	return render(request, 'shaq/home_dashboard.html')
 
 urlpatterns = [
 	url(r'^$', home_uri, name='site_home'),

@@ -7,23 +7,33 @@ shaq home
 {% block main %}
 	<div class="container">
 
-		<h2>Metrics & Monitoring</h2><br>
+		<h1>Quick Links</h1>
 		<div class="row text-center">
-			<div class="col-xs-12 col-md-6">
-				<img src="https://placehold.it/700x300?text=Monitoring+Plot+1">
+			<div class="col-sm-6">
+				<p><a class="btn btn-block btn-primary" href="{% url 'qcforms:QC1_form' 'new' %}" role="button">New Report</a></p>
 			</div>
-			<div class="col-xs-12 col-md-6">
-				<img src="https://placehold.it/700x300?text=Monitoring+Plot+2">
+			<div class="col-sm-6">
+				<p><a class="btn btn-block btn-primary" href="{% url 'qcforms:quality_alert_form' 'new' %}" role="button">New Quality Alert</a></p>
 			</div>
 		</div>
 
-		<h2>Form Data</h2>
+		<h1>Metrics & Monitoring</h1>
 		<div class="row text-center">
-			<div class="col-xs-12 col-md-6">
-				<img src="https://placehold.it/700x300?text=NC+Form+DataTable">
+			<div class="col-xs-12 thumbnail">
+				<img src="https://placehold.it/1800x600?text=Monitoring+Plot+1" class="img-responsive">
 			</div>
-			<div class="col-xs-12 col-md-6">
-				<img src="https://placehold.it/700x300?text=QAlert+Form+DataTable">
+			<div class="col-xs-12 thumbnail">
+				<img src="https://placehold.it/1800x600?text=Monitoring+Plot+2" class="img-responsive">
+			</div>
+		</div>
+
+		<h1>Form Data</h1>
+		<div class="row text-center">
+			<div class="col-xs-12 thumbnail">
+				<img src="https://placehold.it/1800x600?text=NC+Form+DataTable" class="img-responsive">
+			</div>
+			<div class="col-xs-12 thumbnail">
+				<img src="https://placehold.it/1800x600?text=QAlert+Form+DataTable" class="img-responsive">
 			</div>
 		</div>
 	</div>
